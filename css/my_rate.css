@@ -1,0 +1,65 @@
+html,
+body,
+.mui-content,
+.mui-slider,
+.mui-slider-group {
+	height: 100%;
+}
+
+header {
+	width: 100%;
+	height: 70px !important;
+	background: url(../img/login.png) no-repeat;
+	background-size: cover;
+	box-shadow: none !important;
+	padding-top: 28px;
+}
+
+.mui-content {
+	padding-top: 70px !important;
+}
+
+header a {
+	color: #fff;
+}
+
+.mui-title {
+	color: #fff!important;
+}
+
+.mui-slider ul li {
+	height: 60px;
+	padding: 10px 0;
+	border-bottom: 1px solid #eee;
+}
+
+.mui-slider ul li .img {
+	width: 15%;
+	line-height: 40px;
+	text-align: center;
+}
+
+.mui-slider ul li .img img {
+	width: 60% !important;
+	vertical-align: middle;
+}
+
+.mui-slider .type_info {
+	width: 40%;
+	line-height: 40px;
+	font-size: 15px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.mui-slider .rate {
+	width: 45%;
+	line-height: 40px;
+	padding-right: 15px;
+	color: #8F8F94;
+	text-align: right;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}

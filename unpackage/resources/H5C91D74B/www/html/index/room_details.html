@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/style.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/classRoom.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">详情</h1>
+		</header>
+		<div class="mui-content">
+			<div class="details">
+				<div class="d_title">--</div>
+				<div class="tips">
+					阅读&nbsp;<span class="calssr_onclick">0</span>&nbsp;<span class="calssr_time">--</span>
+				</div>
+				<div class="content">
+					<iframe src="" width="100%" height="100%" frameborder="0" id="iframe" allowtransparency="true"  allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+				</div>
+			</div>  
+			<div class="switch">
+				<ul>
+					<li class="left_up" title="">
+						<div class="head">
+							<img src="../../img/class_9.png" /> 上一课程
+						</div>
+						<div class="name up">
+							--
+						</div>
+					</li>
+					<li class="left_down" title="">
+						<div class="head">
+							下一课程
+							<img src="../../img/class_10.png" />
+						</div>
+						<div class="name down">
+							--
+						</div>
+					</li>
+					<div class="clear"></div>
+				</ul>
+			</div>
+			<ul class="romm_list" style="background: #fff;">
+			</ul>
+		</div>
+		<div class="operation" style="display: none;">
+			<ul>
+				<li>
+					<img src="../../img/class_11.png" />
+					<div class="num">
+						赞<span>1256</span>
+					</div>
+				</li>
+				<li>
+					<img src="../../img/class_12.png" />
+					<div class="num">
+						踩<span>1256</span>
+					</div>
+				</li>
+				<li>
+					<img src="../../img/class_13.png" />
+					<div class="num">
+						收藏<span>1256</span>
+					</div>
+				</li>
+				<div class="clear"></div>
+			</ul>
+		</div>
+		<script src="../../js/jquery-1.8.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			function reinitIframe() {
+				var iframe = document.getElementById("iframe");
+				try {
+					iframe.height = iframe.contentWindow.document.documentElement.scrollHeight;
+				} catch(ex) {}
+			}
+			mui.plusReady(function() {
+				mui.init({
+					hardwareAccelerated: true,
+					beforeback: function() {
+						plus.webview.currentWebview().close();
+					}
+				});
+				var tokens = getToken();
+				window.setInterval("reinitIframe()", 200);
+				var cid = plus.webview.currentWebview().cid;
+				loads(cid);
+				$(".romm_list").on('click', 'li', function() {
+					plus.nativeUI.showWaiting();
+					$('body,html').animate({scrollTop:0},0);
+					var cid = $(this).attr('data-id');
+					loads(cid);
+				})
+				$(".switch li").click(function(){
+					var title=$(this).attr("title");
+					if(title !=""){
+						plus.nativeUI.showWaiting();
+						$('body,html').animate({scrollTop:0},0);
+						loads(title);
+					}
+				})
+				
+				function loads(cids) {
+					$.ajax({
+						url: site_app + "/api/Clasrom/clasrom_detail",
+						type: "get",
+						data: {
+							id: cids,
+							token:tokens
+						},
+						dataType: "json",
+						success: function(e) {
+							console.log(e);
+							if(e.error == 0) {
+								plus.nativeUI.closeWaiting();
+								$(".romm_list").html("");
+								$(".d_title").html(e.data.calssr_title);
+								$(".calssr_onclick").html(e.data.calssr_onclick);
+								$(".calssr_time").html(e.data.calssr_time);
+								$(".details .content iframe").attr("src", e.data.calssr_content);
+								var datas = e.data.guesscalsr;
+								if(datas.length != false) {
+									var tpl = '';
+									for(var i = 0; i < datas.length; i++) {
+										tpl += '<li data-id="' + datas[i].calssr_id + '">';
+										tpl += '	<div class="left">';
+										tpl += '		<div class="course_name">' + datas[i].calssr_title;
+										tpl += '		</div>';
+										tpl += '		<div class="tips">';
+										tpl += '			阅读&nbsp;' + datas[i].calssr_onclick + '&nbsp;' + datas[i].calssr_time + '';
+										tpl += '		</div>';
+										tpl += '	</div>';
+										tpl += '	<div class="right">';
+										tpl += '		<img src="' + datas[i].calssr_img + '"/>';
+										tpl += '	</div>';
+										tpl += '	<div class="clear"></div>';
+										tpl += '</li>';
+									}
+									$(".romm_list").html(tpl);
+									
+								} else {
+									$(".romm_list .more").hide();
+								}
+								if(e.data.onclasr !=null){
+									$(".left_up").attr("title",e.data.onclasr.calssr_id);
+									$(".left_up .up").html(e.data.onclasr.calssr_title);
+								}else{
+									$(".left_up").attr("title","");
+									$(".left_up .up").html("无");
+								}
+								
+								if(e.data.underclasr !=null){
+									$(".left_down").show();
+									$(".left_down").attr("title",e.data.underclasr.calssr_id);
+									$(".left_down .down").html(e.data.underclasr.calssr_title);
+								}else{
+									$(".left_down").attr("title","");
+									$(".left_down .down").html("无");
+								}
+							}
+						}
+					})
+				}
+			})
+		</script>
+	</body>
+
+</html>

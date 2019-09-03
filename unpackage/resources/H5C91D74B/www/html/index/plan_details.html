@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/plan_details.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/mui.picker.min.css" />
+		<link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_812297_gn0v2ir2aqs.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">计划详情</h1>
+		</header>
+		<div class="mui-content">
+			<div class="input_money info_list">
+				<form id="form-data">
+					<div class="site" style="padding: 0 15px;margin-bottom: -16px;">
+						<label>消费地区：</label>
+						<div class="right">
+							<input type="text" class="mui-input-clear" id="site" readonly="readonly" placeholder="请选择消费地区">
+							<span class="iconfont icon-mjiantou"></span>
+							<input type="hidden" name="city_id" id="city_id" value="">
+							<input type="hidden" name="city_name" id="city_name" value="">
+						</div>
+						<div class="clear"></div>
+					</div>
+				</form>
+			</div>
+			<ul class="passageway_ul">
+				
+			</ul>
+			<div class="hk_info" style="margin-top: -16px;">
+				<ul style="width: 90%;overflow: hidden;">
+					<li>
+						<p>还款金额</p>
+						<span class="li_c" id="Money"></span>
+					</li>
+					<li>
+						<p>总手续费</p>
+						<span class="li_c" id="sumMoney"></span>
+					</li>
+					<li>
+						<p>预留总额度</p>
+						<span class="li_c" id="sumMoneyfree"></span>
+					</li>
+					<div class="clear"></div>
+				</ul>
+			</div>
+			<div class="reset_plan">
+				<div class="reset_plan_btn">
+					重置计划
+				</div>
+			</div>
+			<div id='p_list'>
+				
+			</div>
+			
+			
+			<div class="mengban"></div>
+		</div>
+		<div class="plan_btn_fot">
+			
+			<button type="button" id="sub_plan" class="mui-btn mui-btn-primary" style="background-color: #46A4F9;border: 1px solid #46A4F9;">提交计划</button>
+		</div>
+		<!-- <div class="plan_btn_fot_">
+			<div class="plan_btn_fot_l">
+				查看下一次计划
+			</div>
+			<div class="plan_btn_fot_r">
+				提交计划
+			</div>
+		</div> -->
+		<script src="../../js/jquery-1.8.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/common.js"></script>
+		<script src="../../js/mui.picker.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			var tokens = getToken();
+			//console.log(tokens);
+			mui.plusReady(function() {
+				mui.init({
+					hardwareAccelerated: true,
+					beforeback: function() {
+						//获得父页面的webview
+						var list = plus.webview.currentWebview().opener();
+						//触发父页面的自定义事件(refresh),从而进行刷新
+						mui.fire(list, 'index');
+						//返回true,继续页面关闭逻辑
+						return true;
+					}
+				});
+				
+				
+				
+				var self = plus.webview.currentWebview();
+				var h_money = self.h_money;//获得参数
+				var k_money = self.k_money;
+				var start_time = self.start_time;
+				var end_time = self.end_time;
+				var card_id = self.card_id;
+				
+				var city_picker = new mui.PopPicker({
+					layer: 2
+				});
+				
+				var mcc_picker = new mui.PopPicker({
+					layer: 1
+				});
+				var cData;
+				var mData;
+				$.ajax({
+					type: 'post',
+					url: site_app + '/api/repayment/city_all',
+					async: false,
+					data: {
+						token: tokens,
+						id: "0",
+						pay_id: 23
+					},
+					dataType: 'json',
+					success: function(e) {
+						if(e.error == 0) {
+							cData = e.data;
+						}
+					}
+				})
+				
+				$("#site").on("tap", function() {
+					
+					city_picker.setData(cData);
+					setTimeout(function() {
+						city_picker.show(function(items) {
+							if((items[0] || {}).text == undefined) {
+								(items[0] || {}).text = "";
+							} else if((items[1] || {}).text == undefined) {
+								(items[1] || {}).text = "";
+							}
+							//							else if((items[2] || {}).text == undefined) {
+							//								(items[2] || {}).text = "";
+							//							}
+							//该ID为接收城市ID字段 
+							$("#site").val((items[0] || {}).text + "-" + (items[1] || {}).text);
+							$("#site").attr("title", (items[1] || {}).value);
+							$("#city_id").val((items[1] || {}).value)
+							$("#city_name").val((items[1] || {}).text)
+							//							+ "-" + (items[2] || {}).text
+							
+							$.ajax({
+								type: 'post',
+								url: site_app + '/api/Xrepayment/check_mcc_list',
+								async: false,
+								data: {
+									token: tokens,
+									h_money:h_money,
+									cid:card_id,
+									city_name:(items[1] || {}).text,
+									city_id:(items[1] || {}).value
+								},
+								dataType: 'json',
+								success: function(e) {
+									
+									if(e.error_code == 0) {
+										for(var p = 0;p<e.res.length;p++){
+											// console(e.res[p].a_s);
+											// console(e.res[p].a_s);
+											$("#"+e.res[p].a_s).attr('value',e.res[p].cname);
+										}
+									}
+								}
+							})
+						});
+					}, 200);
+					
+					
+				});
+				$("#p_list").on("click", ".industry", function() {
+					//plus.nativeUI.showWaiting();
+					var id = $(this).find("input[name='mcc_name']").attr("id");
+					
+					var payment_id = $(this).find("input[name='payment_id']").val();
+					
+					var city_id =$("#city_id").val();
+					var city_name = $("#city_name").val();
+					if(city_id == ''){
+						mui.alert('请选择消费地区', '提示', '', '', 'div');
+						return false;
+					}
+					
+					$.ajax({
+						type: 'post',
+						url: site_app + '/api/Xrepayment/get_all_city_mcc',
+						async: false,
+						data: {
+							token: tokens,
+							
+							city_name:city_name,
+							
+							pid:payment_id,
+						},
+						dataType: 'json',
+						success: function(e) {
+							
+							if(e.error_code == 0) {
+								var mcc_datas = e.res;
+								console.log(mcc_datas)
+								mcc_picker.setData(mcc_datas);
+								
+									mcc_picker.show(function(items) {
+										
+										console.log(items[0].text);
+										$("#"+id).val(items[0].text)
+										$.ajax({
+												type: 'post',
+												url: site_app + '/api/Xrepayment/check_mcc_list',
+												async: false,
+												data: {
+													token: tokens,
+													cid:card_id,
+													a_s:id,
+													h_money:h_money,
+													key:1,
+													mcc:items[0].text,
+													city_name:city_name,
+													
+													pid:payment_id
+												},
+												dataType: 'json',
+												success: function(e) {
+													
+												}
+										});
+								
+									})
+							}
+						}
+					})
+					// $(".industry_sure").attr("id", id);
+					// var bankid = $('#bankid').val();
+					// var channelType = $('#channelType').val();
+					// var region = $("#site").val();
+					// var city_id = $("#site").attr("title");
+					// $(".industry_list").html("");
+					// $.ajax({
+					// 	type: "post",
+					// 	url: site_app + "/api/repayment/get_mcc",
+					// 	data: {
+					// 		token: tokens,
+					// 		cid: bankid,
+					// 		pay_id: channelType,
+					// 		region: region,
+					// 		city_id: city_id
+					// 	},
+					// 	dataType: "json",
+					// 	success: function(e) {
+					// 		plus.nativeUI.closeWaiting();
+					// 		if(e.error == 0) {
+					// 			if(e.data == false) {
+					// 				mui.alert("暂无更多行业", '提示', '', '', 'div');
+					// 			} else {
+					// 				$(".industry_popup").animate({
+					// 					bottom: "0"
+					// 				});
+					// 				$(".mengban").show();
+					// 				for(var i = 0; i < e.data.data.length; i++) {
+					// 					var li = "<li class='industry_radio'>" +
+					// 						"<div class='left'>" +
+					// 						"<div class='mui-input-row mui-radio'>" +
+					// 						"<input name='radio' type='radio' title='" + e.data.data[i].name + "' value='" + e.data.data[i].mcc + "'>" +
+					// 						"</div>" +
+					// 						"</div>" +
+					// 						"<div class='right'>" +
+					// 						"<div class='mode_name'>" + e.data.data[i].name + "</div>" +
+					// 						"</div>" +
+					// 						"<div class='clear'></div>" +
+					// 						"</li>";
+					// 					$(".industry_list").append(li);
+					// 				}
+					// 			};
+					// 		}
+					// 	}
+					// });
+				})
+				$(".mengban,.industry_sure,.close").click(function() {
+					$(".mengban,.code_popup").hide();
+					$(".industry_popup,.stroke_num").animate({
+						bottom: "-330px"
+					});
+				});
+				
+				
+				$.ajax({
+					url:site_app + "/api/Xrepayment/generate_plan_preview",
+					type: "post",
+					data:{
+						token: tokens,
+						repayment_amount:h_money,
+						start_time:start_time,
+						end_time:end_time,
+						balance_money:k_money,
+						cid:card_id,
+						device_id:plus.device.imei
+					},
+					dataType:"json",
+					success: function(e) {
+						//console.log(e.res.td_list)
+						$("#Money").text(e.res.repayment_amount);
+						$("#sumMoney").text(e.res.sxf);
+						$("#sumMoneyfree").text(e.res.balance_money)
+						for(var i=0;i<e.res.td_list.length;i++){
+							var li = '<li><span>'+e.res.td_list[i].payment_code+'</span>'+e.res.td_list[i].payment_name+'</li>';
+							$(".passageway_ul").append(li);
+						}
+
+						 for(var j=0;j<e.res.plan_list.length;j++){
+						 	var t1 = '<div class="plan_list"><div class="plan_list_title"><div class="plan_list_title1"><span><span>'
+						 	+e.res.plan_list[j].payment_info.payment_code+'</span><span class="money_span">还款:￥'
+						 	+e.res.plan_list[j].hk.list+'</span></span><span>'
+						 	+e.res.plan_list[j].hk.times_list+'</span></div></div>';
+						 	var t2 ='';
+						 	for(var z=0;z<e.res.plan_list[j].xf.list.length;z++){
+						 		t2 += '<div class="list_details"><div class="list_details1"><p><span>消费(￥'
+						 		+e.res.plan_list[j].xf.list[z]+')</span><span>'
+						 		+e.res.plan_list[j].xf.times_list[z]+'</span></p><div class="industry" ><label>行业：</label><div class="right"><input type="text" name="mcc_name" class="mui-input-clear"  id='+e.res.plan_list[j].xf.time_s[z]+' value="" readonly="readonly"><input type="hidden" name="payment_id" value="'+e.res.plan_list[j].payment_info.payment_id+'"><span class="iconfont icon-mjiantou"></span></div><div class="clear"></div></div></div></div>';
+						 	}
+						 	var new_plan_list = t1+t2;
+						 	$("#p_list").append(new_plan_list);
+						 }
+						
+					}
+				})
+				
+				$(".reset_plan_btn").on("tap",function(){
+					window.location.reload()
+				})
+			
+				$("#sub_plan").on('tap',function(){
+					var city_id = $("#city_id").val()
+					if(city_id != ''){
+						$.ajax({
+							url:site_app + "/api/Xrepayment/sub_plan",
+							type: "post",
+							data:{
+								token: tokens,
+								repayment_amount:h_money,
+								start_time:start_time,
+								end_time:end_time,
+								balance_money:k_money,
+								cid:card_id,
+								version: '2.0',
+								region:$("#site").val(),
+								city:$("#city_id").val()
+							},
+							dataType:"json",
+							success: function(e) {
+								if(e.error_code == 0){
+									mui.alert(e.msg,'提示', '', function(){
+										mui.openWindow({
+											url: "card_management.html",
+											id: "card_management",
+											show: {
+												autoShow: true //页面loaded事件发生后自动显示，默认为true
+											},
+											extras: {
+												token:tokens
+											},
+											waiting: {
+												autoShow: false //自动显示等待框，默认为true
+												//title: '', //等待对话框上显示的提示内容
+											}
+										})
+									}, 'div');
+									
+								}else{
+									mui.alert(e.msg, '提示', '', '', 'div');
+									return false;
+								}
+							}
+						})
+					}else{
+						mui.alert('请选择消费地区', '提示', '', '', 'div');
+						return false;
+					}
+					
+				})
+			
+			})
+			
+			
+		</script>
+	</body>
+
+</html>

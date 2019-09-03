@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/style.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/classRoom.css" />
+		<style type="text/css">
+			html,body,.mui-content{
+				height: 100%;
+				background: #fff;
+			}
+			.more{
+				display: none;
+				height: 40px;
+				line-height: 40px;
+				text-align: center;
+				font-size: 14px;
+				overflow: hidden;
+				width: 100%;
+			}
+
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">加载中</h1>
+		</header>
+		<div class="mui-content">
+			<ul class="romm_list">
+				 
+			</ul>
+			<p class="more">点击加载更多</p>
+		</div>
+		<script src="../../js/jquery-1.8.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.plusReady(function() {
+				mui.init({
+					hardwareAccelerated: true,
+				});
+				
+				var cid = plus.webview.currentWebview().cid;
+				var name = plus.webview.currentWebview().name;
+				$('.mui-title').text(name);
+				
+				var pages =1;
+				getGoodsData(pages,cid);
+				
+				$(".more").click(function() {
+					pages++;
+					getGoodsData(pages,cid);
+				})
+				//获取底部首页信息
+				function getGoodsData(page,type){
+					
+					$.ajax({
+						url: site_app + "/api/Clasrom/clroomlist",
+						type: "get",
+						data: {
+							page: page,
+							type:type
+						},
+						dataType: "json",
+						success: function(e) {
+							console.log(e);
+							if(e.error == 0) {
+								var datas = e.data.data;
+								if(datas.length != false) {
+									$(".mui-content,.more").show();
+									$(".no_info").hide();
+									var tpl ='';
+									for(var i = 0; i < datas.length; i++) {
+										
+										
+										tpl += '<li data-id="'+ datas[i].calssr_id + '">';
+										tpl += '	<div class="left">';
+										tpl += '		<div class="course_name">'+ datas[i].calssr_title;
+										
+										tpl += '		</div>';
+										tpl += '		<div class="tips">';
+										tpl += '			阅读&nbsp;' + datas[i].calssr_onclick + '&nbsp;' + datas[i].calssr_time + '';
+										tpl += '		</div>';
+										tpl += '	</div>';
+										tpl += '	<div class="right">';
+										tpl += '		<img src="' + datas[i].calssr_img + '"/>';						
+										tpl += '	</div>';
+										tpl += '	<div class="clear"></div>';
+										tpl += '</li>';
+									}
+									$(".romm_list").append(tpl);
+									
+								} else {
+									$(".romm_list .more").hide();
+									mui.toast('没有更多数据了',  '');
+								}
+	
+							}
+						}
+					})
+					
+				}
+				//点击跳转到内容页面
+				$(document).on('click','.romm_list li',function(){
+					var cid = $(this).attr('data-id');
+					mui.openWindow({
+						url: "room_details.html",
+						id: "room_details",
+						show: {
+							autoShow: true //页面loaded事件发生后自动显示，默认为true
+						},
+						extras: {
+							cid:cid
+						},
+						createNew:true,
+						waiting: {
+							autoShow: false //自动显示等待框，默认为true
+							//title: '', //等待对话框上显示的提示内容
+						}
+					})
+				})
+				plus.nativeUI.closeWaiting();
+			})
+		</script>
+	</body>
+
+</html>

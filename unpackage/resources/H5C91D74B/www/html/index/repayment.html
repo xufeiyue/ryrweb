@@ -1,0 +1,453 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/style.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/repayment.css" />
+		<!--<link rel="stylesheet" type="text/css" href="../../css/repayment_list.css" />-->
+		<link rel="stylesheet" type="text/css" href="../../css/mui.picker.min.css" />
+		<link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_812297_gn0v2ir2aqs.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">智能还款</h1>
+		</header>
+		<div class="mui-content">
+			<img src="../../img/ic_edit_creditcard.png" width="100%" style="display: block;" />
+			<!--<div class="card_info">
+				<img src="../../img/bank_red_bg.png" />
+				<div class="card_t">
+					<div class="left" id="banklist">加载中</div>
+					<div class="right payment_history" style="text-align: right;">
+						还款记录
+						<img src="../../img/arrow_right_white.png" width="8%" style="vertical-align: middle;margin-bottom: 3px;" />
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="card_logo">
+					<img src="../../img/bank_white_icon_loading.png" id="bankurl" />
+				</div>
+				<div class="card_b">
+					<ul>
+						<li>
+							单笔最高
+							<span id="min"></span>
+						</li>
+						<li>
+							单笔最低
+							<span id="max"></span>
+						</li>
+						<div class="clear"></div>
+					</ul>
+				</div>
+			</div>-->
+			<div class="pay_method">
+				<ul class="mui-table-view" id="channel">
+
+				</ul>
+				<input type="hidden" id="channelType" name="" value="" />
+				<input type="hidden" id="bankid" name="bankid" value="" />
+			</div>
+			<div class="input_money info_list">
+				<form id="form-data">
+					<div class="title">还款金额</div>
+					<div class="mui-input-row">
+						<span class="sign">￥</span>
+						<input type="number" class="mui-input-clear money" id="h_money" placeholder="请输入还款金额(请输入整数)">
+						<!--<span class="recalculate right">计算笔数</span>-->
+						<div class="clear"></div>
+					</div>
+					
+					<ul class="num_list" id="numlist">
+
+					</ul>
+					
+					<div class="clear"></div>
+					<div class="mui-input-row choose_time">
+						<label>开始时间</label>
+						<input type="text" id="start" data-options='' class="mui-input-clear" placeholder="请选择计划开始时间" readonly="readonly">
+					</div>
+					<div class="mui-input-row choose_time">
+						<label>结束时间</label>
+						<input type="text" id="end" class="mui-input-clear" placeholder="请选择计划结束时间" readonly="readonly">
+					</div>
+					<div class="set_month">
+						<span>连续设置:</span>
+						<ul class="set_month_ul">
+							<li class="set_month_active">1个月</li>
+							<li>2个月</li>
+							<li>3个月</li>
+						</ul>
+					</div>
+
+					<div class="t1" style="display: none;">
+					<div class="title">卡内余额</div>
+					<div class="mui-input-row">
+						<span class="sign">￥</span>
+						<input type="text" class="mui-input-clear money" id="k_money" placeholder="">
+						<div class="clear"></div>
+					</div>
+					</div>
+					<div class="mengban"></div>
+				</form>
+			</div>
+			<button type="button" class="mui-btn mui-btn-blue preview_plan">生成预览计划</button>
+			<div class="preview_list" style="display: none;">
+				<div class="hk_info" style="margin-top: 10px;">
+					<ul>
+						<li>
+							<p>还款金额</p>
+							<span class="li_c" id="Money">0</span>
+						</li>
+						<li>
+							<p>总手续费</p>
+							<span class="li_c" id="sumMoney">0</span>
+						</li>
+						<li>
+							<p>预留总额度</p>
+							<span class="li_c" id="sumMoneyfree">0</span>
+						</li>
+						<div class="clear"></div>
+					</ul>
+				</div>
+				<div class="info_list">
+					<div id="ajax_data">
+
+					</div>
+				</div>
+				<button type="button" class="mui-btn mui-btn-blue generate_plan">提交计划</button>
+			</div>
+			<!--笔数弹窗-->
+			<div class="stroke_num popup">
+				<div class="title">
+					<span class="close">取消</span> 选择笔数
+					<span class="sure stroke_sure">确定</span>
+				</div>
+				<ul class="mui-table-view stroke_list">
+
+				</ul>
+			</div>
+			<!--行业弹窗-->
+			<div class="industry_popup popup">
+				<div class="title">
+					<span class="close">取消</span> 选择行业
+					<span class="sure industry_sure">确定</span>
+				</div>
+				<ul class="mui-table-view industry_list">
+
+				</ul>
+			</div>
+
+			<!--验证码-->
+			<div class="code_popup">
+				<div class="title">
+					请输入短信验证码
+				</div>
+				<div class="code">
+					<input type="text" id="code" placeholder="请输入验证码" />
+					<span class="send_code" onclick="get_code()">重新获取</span>
+					<div class="clear"></div>
+				</div>
+				<button type="button" class="mui-btn mui-btn-blue code_sub">提交</button>
+			</div>
+			<div class="mengban"></div>
+		</div>
+		<input type="hidden" id="mcc" value="" />
+		<script src="../../js/jquery-1.8.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/common.js"></script>
+		<script src="../../js/mui.picker.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var tokens = getToken();
+			mui.plusReady(function() {
+				mui.init({
+					hardwareAccelerated: true,
+					beforeback: function() {
+						//获得父页面的webview
+						var list = plus.webview.currentWebview().opener();
+						//触发父页面的自定义事件(refresh),从而进行刷新
+						mui.fire(list, 'index');
+						//返回true,继续页面关闭逻辑
+						return true;
+					}
+				});
+				window.addEventListener('repayment', function(e) { //执行刷新
+					location.reload();
+				});
+				//这个地方需要获取上个页面传值过来的银行卡的ID
+
+				var self = plus.webview.currentWebview();
+				$('#bankid').val(self.title);
+				//console.log(tokens);
+				//获取支付通道
+
+				getToken();
+				
+				//plus.nativeUI.showWaiting("安全检测中，请等待");
+				//获取头部
+				var bankid = $('#bankid').val();
+				//console.log(bankid);
+				//console.log(tokens)
+				var city_picker = new mui.PopPicker({
+					layer: 2
+				});
+				var cData;
+
+				/*选择开始时间*/
+				var start = new Date();
+				var month;
+				var day;
+				var m = start.getMonth() + 1;
+				var d = start.getDate();
+				if(m < 10) {
+					month = "0" + m;
+				} else {
+					month = m;
+				}
+				if(d < 10) {
+					day = "0" + d;
+				} else {
+					day = d;
+				}  
+				$("#start").val(start.getFullYear() + "-" + month + "-" + day);
+				
+				$('.set_month_ul li').click(function() {
+		            var i = $(this).index();
+		            $(this).addClass('set_month_active').siblings().removeClass('set_month_active');
+		         });
+				document.getElementById('start').addEventListener('tap', function() {
+					var dtPicker = new mui.DtPicker({
+						type: "date",
+					});
+					dtPicker.show(function(selectItems) {
+						$("#start").val(selectItems.text);
+						var end_time = $("#end").val();
+						if(end_time != ''){
+							var start_time = $("#start").val();
+							var h_money = $("#h_money").val();
+							$.ajax({
+								url:site_app + "/api/Xrepayment/get_min_amount_reserved",
+								type:"post",
+								data:{
+									token:tokens,
+									repayment_amount:h_money,
+									start_time:start_time,
+									end_time:end_time
+								},
+								dataType:"json",
+								success:function(e){
+									if(e.error_code == 0){
+										$("#k_money").attr('placeholder',"预留余额至少"+e.amount_reserved+"元(100元的倍数)");
+									}else{
+										alert('err')
+									}
+								}
+							})
+						}
+					})
+				});
+				/*监听还款金额*/
+				document.getElementById('h_money').addEventListener('tap', function() {
+					var h_money = $("#h_money").val();
+					var start_time = $("#start").val();
+					var end_time = $("#end").val();
+					var k_money = $("#k_money").val();
+					
+					if(h_money && start_time && end_time && k_money){
+						console.log(1)
+					}else{
+						console.log(2)
+					}
+				})
+				/*选择结束时间*/
+				document.getElementById('end').addEventListener('tap', function() {
+					// 获取还款金额,开始时间的值
+					var h_money = $("#h_money").val();
+									
+					var start_time = $("#start").val();
+					
+					
+					if(h_money == ''){
+						mui.alert('还款金额不能为空', '提示', '', '', 'div');
+						return false;
+					}else if(start_time == ''){
+						mui.alert('请选择开始时间', '提示', '', '', 'div');
+						return false;
+					}else{
+						// 请求获取卡内最低预留余额接口
+						$(".t1").css('display','block');
+						
+						var dtPicker = new mui.DtPicker({
+							type: "date",
+						});
+						dtPicker.show(function(selectItems) {
+							$("#end").val(selectItems.text);
+							var end_time = $("#end").val();
+							if(end_time !=''){
+								$.ajax({
+									url:site_app + "/api/Xrepayment/get_min_amount_reserved",
+									type:"post",
+									data:{
+										token:tokens,
+										repayment_amount:h_money,
+										start_time:start_time,
+										end_time:end_time
+									},
+									dataType:"json",
+									success:function(e){
+										if(e.error_code == 0){
+											$("#k_money").attr('placeholder',"预留余额至少"+e.amount_reserved+"元(100元的倍数)");
+										}else{
+											$("#end").val('');
+											mui.alert(e.msg, '提示', '', '', 'div');
+										}
+									}
+								})
+							}
+						})
+						
+					}
+					
+				});
+				
+				//console.log(end_time)
+				
+// 				$.ajax({
+// 					url: site_app + "/api/my/card_info",
+// 					type: "post",
+// 					data: {
+// 						token: tokens,
+// 						type: "2"
+// 					},
+// 					dataType: "json",
+// 					async: false,
+// 					success: function(e) {
+// 						if(e.error == 0) {
+// 							$("#site").val(e.data.card_province + "-" + e.data.card_city);
+// 						}
+// 					}
+// 				})
+// 
+				var preview_data, datas;
+
+
+				$("#site").on("tap", function() {
+					city_picker.setData(cData);
+					setTimeout(function() {
+						city_picker.show(function(items) {
+							if((items[0] || {}).text == undefined) {
+								(items[0] || {}).text = "";
+							} else if((items[1] || {}).text == undefined) {
+								(items[1] || {}).text = "";
+							}
+							//							else if((items[2] || {}).text == undefined) {
+							//								(items[2] || {}).text = "";
+							//							}
+							//该ID为接收城市ID字段 
+							$("#site").val((items[0] || {}).text + "-" + (items[1] || {}).text);
+							$("#site").attr("title", (items[1] || {}).value);
+							//							+ "-" + (items[2] || {}).text
+						});
+					}, 200);
+				});
+
+				
+				$(".preview_plan").click(function() {
+					var min_money = 0;
+					var h_money = $("#h_money").val();
+					var k_money = $("#k_money").val();
+					var start_time = $("#start").val();
+					var end_time = $("#end").val();
+					if(h_money == '' || k_money == '' || start_time == '' || end_time == ''){
+						// if(0){
+						mui.alert('请补全信息！', '提示', '', '', 'div');
+						return false;
+					}else{
+						// if(k_money % 100 >0){
+						// 	mui.alert('卡内余额填100的倍数！', '提示', '', '', 'div');
+						// 	return false;
+						// }else{
+						// 	
+						// }
+						 var rex = /^[1-9]{1}[0-9]*$/;//正整数
+						 if(h_money.length>1){
+							var flagRex =/^0/;
+							if(flagRex.test(h_money)){
+								mui.alert('还款金额填写格式不正确！', '提示', '', '', 'div');
+								$("#h_money").val('');
+								return false;
+							}
+						}
+						$.ajax({
+							url:site_app + "/api/Xrepayment/get_min_amount_reserved",
+							type:"post",
+							data:{
+								token:tokens,
+								repayment_amount:h_money,
+								start_time:start_time,
+								end_time:end_time
+							},
+							dataType:"json",
+							success:function(e){
+								if(e.amount_reserved>k_money){
+									mui.alert('卡内最低预留余额'+e.amount_reserved, '提示', '', '', 'div');
+									$("#k_money").val('');
+									$("#k_money").attr('placeholder',"预留余额至少"+e.amount_reserved+"元(100元的倍数)");
+									return false;
+								}else{
+									mui.openWindow({
+										url: "plan_details.html",
+										id: "plan_details",
+										show: {
+											autoShow: true //页面loaded事件发生后自动显示，默认为true
+										},
+										extras: {
+											h_money: h_money,
+											k_money: k_money,
+											start_time:start_time,
+											end_time:end_time,
+											card_id:bankid
+										},
+										waiting: {
+											autoShow: false //自动显示等待框，默认为true
+											//title: '', //等待对话框上显示的提示内容
+										}
+									})
+								}
+							}
+						})
+						// console.log(min_money);console.log(k_money);
+						
+						
+					}
+					
+				})
+
+
+				$(".custom").click(function() {
+					$(".custom").animate({
+						left: "-100%"
+					});
+					$(".custom_f").animate({
+						left: "0"
+					});
+				});
+				$("body").ajaxStop(function() {
+					plus.nativeUI.closeWaiting();
+				});
+				 
+			})
+			var wait = 60;
+
+
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/styles.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/upgrade.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">VIP会员</h1>
+		</header>
+		<div class="mui-content">
+			<div class="title">
+				<img src="../../img/up_2.png" />
+				<p>VIP会员权益</p>
+			</div>
+			<div class="agent_table">
+				<table border="1">
+					<thead>
+						<tr>
+							<th>级别收益</th>
+							<th>金牌创客</th>
+							<th>银牌创客</th>
+							<th>铜牌创客</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>招商收益</td>
+							<td>50%</td>
+							<td>40%</td>
+							<td>30%</td>
+						</tr>
+						<tr>
+							<td>智能还款收益</td>
+							<td>0.15%</td>
+							<td>0.12%</td>
+							<td>0.08%</td>
+						</tr>
+						<tr>
+							<td>无卡支付收益</td>
+							<td>0.07%+1</td>
+							<td>0.06%+0.5</td>
+							<td>0.05%</td>
+						</tr>
+						<tr>
+							<td>信用卡办卡收益</td>
+							<td>50%</td>
+							<td>40%</td>
+							<td>30%</td>
+						</tr>
+						<tr>
+							<td>贷款收益</td>
+							<td>50%</td>
+							<td>40%</td>
+							<td>30%</td>
+						</tr>
+						<tr>
+							<td>信用卡积分兑现收益</td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>花呗回款收益</td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>商城收益</td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<button type="button" class="mui-btn mui-btn-blue member_upgrade">升级</button>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/jquery-1.8.0.min.js"></script>
+		<script src="../../js/common.js"></script>
+		<script type="text/javascript">
+			mui.plusReady(function() {
+				mui.init({
+					hardwareAccelerated: true,
+				});
+				//plus.nativeUI.showWaiting("加载中");
+				var tokens = getToken();
+				$(".member_upgrade").click(function() {
+					mui.openWindow({
+						url: "../user/my_member.html",
+						id: "my_member",
+						show: {
+							autoShow: true //页面loaded事件发生后自动显示，默认为true
+						},
+						waiting: {
+							autoShow: false //自动显示等待框，默认为true
+							//title: '', //等待对话框上显示的提示内容
+						}
+					})
+				})
+				plus.nativeUI.closeWaiting();
+				 
+			});
+		</script>
+	</body>
+
+</html>

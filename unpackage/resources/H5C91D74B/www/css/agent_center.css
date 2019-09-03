@@ -1,0 +1,129 @@
+html,
+body {
+	height: 100%;
+	background: #fff;
+}
+
+header {
+	width: 100%;
+	height: 70px !important;
+	background: url(../img/login.png) no-repeat;
+	background-size: cover;
+	box-shadow: none !important;
+	padding-top: 28px;
+}
+
+.mui-content {
+	background: #fff;
+}
+
+.mui-title {
+	color: #fff!important;
+}
+
+.head {
+	width: 100%;
+	height: 200px;
+	background: url(../img/ag_bg.png) no-repeat;
+	background-size: 100% 100%;
+	padding-top: 18px;
+}
+
+.head .title a {
+	margin-right: -10px;
+	padding-right: 10px;
+	padding-left: 10px;
+	font-size: 24px;
+	position: relative;
+	z-index: 20;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	color: #fff;
+}
+.head .content{
+	padding-top: 50px;
+	text-align: center;
+}
+.head .content img{
+	width: 68px;
+	height: 68px;
+	border-radius: 50%;
+}
+.head .content p{
+	color: #fff;
+	margin-bottom: 5px;
+}
+.head .content .user_name{
+		font-size: 16px;
+}
+
+.region{
+	padding: 10px 15px;
+	background: #F0F0F0;
+}
+.region ul{
+	padding-bottom: 15px;
+	border-bottom: 4px solid #EBEBEB;
+}
+.region ul li{
+	width: 50%;
+	float: left;
+	text-align: center;
+	font-size: 14px;
+}
+.region ul li img{
+	width: 10%;
+}
+.region ul li p{
+	margin-bottom: 5px;
+}
+.region ul li .region_tip{
+	font-size: 22px;
+	color: #282828;
+	font-weight: 700;
+}
+.xj_num{
+	padding: 15px;
+	background: #F0F0F0;
+	text-align: center;
+}
+.xj_num p{
+	margin-bottom: 5px;
+}
+.xj_num img{
+	width: 10%;
+}
+.xj_num .num{
+	font-size: 24px;
+	color: #282828;
+}
+.assets{
+	padding: 15px;
+	text-align: center;
+}
+.assets .info{
+	color: #428FF7;
+}
+.assets .info .money{
+	font-size: 26px;
+}
+.assets_btn{
+	font-size: 12px;
+	color: #8F8F94;
+	margin-top: 10px;
+}
+.assets_btn img{
+	width: 15px;
+	vertical-align: middle;
+}
+.carry_btn{
+	position: fixed;
+	width: 92%;
+	left: 50%;
+	bottom: 15px;
+	margin-left: -46%;
+	font-size: 15px;
+	padding: 10px 15px;
+	background: #6298F0;
+	border: 1px solid #6298F0;
+}

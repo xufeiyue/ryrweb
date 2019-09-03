@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/style.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/my_trade.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">我的订单</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-slider">
+				<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<a class="mui-control-item mui-active" href="#item1"><span>信用卡申请</span></a>
+					<a class="mui-control-item" href="#item2"><span>网贷申请</span></a>
+					<a class="mui-control-item" href="#item3"><span>积分兑换</span></a>
+				</div>
+				<div class="mui-slider-group">
+					<div id="item1" class="mui-slider-item mui-control-content mui-active">
+						<ul class="trade_list balance_list" style="margin-bottom: 50px;">
+
+						</ul>
+					</div>
+					<div id="item2" class="mui-slider-item mui-control-content">
+						<ul class="trade_list profit_list" style="margin-bottom: 50px;">
+
+						</ul>
+					</div>
+					<div id="item3" class="mui-slider-item mui-control-content">
+						<ul class="trade_list upgrade_list" style="margin-bottom: 50px;">
+
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="no_info" style="display: none;">
+				<img src="../../img/no_creditbill_icon.png" />
+				<p>没有相关数据</p>
+			</div>
+		</div>
+		<script src="../../js/jquery-1.8.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var tokens = getToken();
+			mui.plusReady(function() {
+				mui.init({
+					hardwareAccelerated: true,
+				});
+				//plus.nativeUI.showWaiting("加载中");
+				getToken();
+				qapply(1, "balance_list");
+				document.querySelector('.mui-slider').addEventListener('slide', function(event) {
+					if(event.detail.slideNumber === 0) {
+						if($(".balance_list").html() != "") {
+							$(".no_info").hide();
+						}
+						if($(".balance_list").attr("title") != "yes") {
+							//plus.nativeUI.showWaiting("加载中");
+							$(".balance_list").html('');
+							qapply(1, "balance_list");
+						}
+					} else if(event.detail.slideNumber === 1) {
+						if($(".profit_list").html() != "") {
+							$(".no_info").hide();
+						}
+						if($(".profit_list").attr("title") != "yes") {
+							//plus.nativeUI.showWaiting("加载中");
+							$(".profit_list").html('');
+							qapply(2, "profit_list");
+						}
+					}else if(event.detail.slideNumber === 2) {
+						if($(".upgrade_list").html() != "") {
+							$(".no_info").hide();
+						}
+						if($(".upgrade_list").attr("title") != "yes") {
+							//plus.nativeUI.showWaiting("加载中");
+							$(".upgrade_list").html('');
+							qapply(3, "upgrade_list");
+						}
+					}
+				});
+
+				//				$("body").ajaxStop(function() {
+				plus.nativeUI.closeWaiting();
+				 
+				//				});
+			})
+
+			function qapply(types, clas) {
+				$.ajax({
+					type: "post",
+					url: site_app + "/api/my/qapply?type=" + types,
+					data: {
+						token: tokens
+					},
+					dataType: "json",
+					success: function(e) {
+						plus.nativeUI.closeWaiting();
+						if(e.error == 0) {
+							if(e.data == false) {
+								$(".no_info").show();
+								$("." + clas + "").hide();
+							} else {
+								$(".no_info").hide();
+								$("." + clas + "").show();
+								$("." + clas + "").attr("title", "yes");
+								for(var i = 0; i < e.data.length; i++) {
+									var txt = '';
+									if(e.data[i].log_state == 0) {
+										txt = '提交请求';
+									} else if(e.data[i].log_state == 1) {
+										txt = '接受请求';
+									} else if(e.data[i].log_state == 3) {
+										txt = '拒绝申请';
+									} else if(e.data[i].log_state == 4) {
+										txt = '申请中';
+									} else if(e.data[i].log_state == 4) {
+										txt = '申请通过';
+									} else if(e.data[i].log_state == 4) {
+										txt = '申请失败';
+									}
+									var html = '<li>' +
+										'<div class="left">' +
+										'<p style="font-size: 15px;color: #000;">' + e.data[i].log_bank_name + '</p>' +
+										'<p>' + e.data[i].log_time + '</p>' +
+										'</div>' +
+										'<div class="right" style="font-size: 16px;">' + txt + '</div>' +
+										'<div class="clear"></div>' +
+										'</li>'
+									$("." + clas + "").append(html);
+								}
+							}
+						}
+					}
+				});
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,43 @@
+<div id='tt'></div>
+		<script src="../../js/jquery-1.8.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui.min.js"></script>
+		
+		<script src="../../js/mui.picker.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			mui.plusReady(function() {
+				mui.init({
+					hardwareAccelerated: true,
+					beforeback: function() {
+						//获得父页面的webview
+						var list = plus.webview.currentWebview().opener();
+						//触发父页面的自定义事件(refresh),从而进行刷新
+						mui.fire(list, 'index');
+						//返回true,继续页面关闭逻辑
+						return true;
+					}
+				});
+				
+				var self = plus.webview.currentWebview();
+				var s = self.res;
+				$("#tt").html(s);
+				document.getElementById("gatewayform").submit();
+				
+				})
+				
+				function yl_res(orderno){
+					mui.toast('开通成功')
+				mui.openWindow({
+					url: "card_management.html",
+					id: "card_management",
+					show: {
+						autoShow: true //页面loaded事件发生后自动显示，默认为true
+					},
+					waiting: {
+						autoShow: false //自动显示等待框，默认为true
+						//title: '', //等待对话框上显示的提示内容
+					}
+				})
+    }
+		</script>
+

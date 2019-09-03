@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/style.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/classRoom.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left back" style="display: none;"></a>
+		    <h1 class="mui-title">新手课堂</h1>
+		</header>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider">
+				<div class="mui-slider-group mui-slider-loop">
+				</div>
+			</div>
+			<div class="tab">
+				<ul class="tab_list">
+					
+				</ul>
+				<div class="clear"></div>
+			</div>
+			<div class="k_type">
+				<div class="k_title">
+					<div class="left">
+						推荐课程
+					</div>
+					<div class="right">
+						<!--更多推荐 >>-->
+					</div>
+					<div class="clear"></div>
+				</div>
+				<ul class="type_list">
+				</ul>
+			</div>
+
+		</div>
+		<script src="../../js/jquery-1.8.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.plusReady(function() {
+				mui.init({
+					hardwareAccelerated: true,
+				});
+				window.addEventListener('login', function(e) { //执行刷新
+					location.reload();
+				});
+				var self = plus.webview.currentWebview();
+				if(self.title == 1){
+					$(".back").show();
+				}else{
+					$(".back").hide();
+				}
+				var tokens = localStorage.getItem("token");
+				var tokensss = tokens;
+				/*用户信息展示*/
+				if(!tokens) {
+					window.addEventListener('classRoom_load', function(e) { //执行刷新
+						location.reload();
+					});
+				}
+				setInterval(function() {
+					tokens = localStorage.getItem("token");
+					if(tokensss != tokens) {
+						window.addEventListener('classRoom_load', function(e) { //执行刷新
+							location.reload();
+						});
+					}
+				}, 100);
+				
+				mui(".mui-slider").slider({
+					interval: 3000 //自动轮播周期，若为0则不自动播放，默认为0；
+				});
+				
+				/*banner*/
+				$.ajax({
+					type: "get",
+					url: site_app + "/api/Img/index",
+					data: {
+						type: "5"
+					},
+					dataType: "json",
+					success: function(e) {
+						if(e.error == 0) {
+							var img = '';
+							var ImgList = e.data;
+							if(ImgList.length>0){
+								img += '<div class="mui-slider-item mui-slider-item-duplicate" title="' + ImgList[0].img_url + '">' +
+									'<img src="' + ImgList[0].img_img + '" style="display:block">' +
+									'</div>';
+								for(var i = 0; i < ImgList.length; i++) {
+									img += '<div class="mui-slider-item" title="' + ImgList[i].img_url + '">' +
+										'<img src="' + ImgList[i].img_img + '" style="display:block">' +
+										'</div>';
+								}
+								img += '<div class="mui-slider-item mui-slider-item-duplicate" title="' + ImgList[0].img_url + '">' +
+									'<img src="' + ImgList[0].img_img + '" style="display:block">' +
+									'</div>';
+								$(".mui-slider-group").html(img);
+							}
+							var gallery = mui('.mui-slider');
+							gallery.slider();
+							mui(".mui-slider").slider({
+								interval: 3000 //自动轮播周期，若为0则不自动播放，默认为0；
+							});
+						}
+					}
+				});
+				
+				//获取分类
+				$.ajax({
+					type: "get",
+					url: site_app + "/api/Clasrom/clroomtype",
+					dataType: "json",
+					success: function(e) {
+						if(e.error == 0) {
+							var classd = e.data;
+							var img = '';
+							for(var i = 0; i < classd.length; i++) {
+								img += '<li data-id="' + classd[i].type_id + '"  data-name="' + classd[i].type_name + '"  >';
+								img += '	<img src="' + classd[i].type_icon + '" />';
+								img += '	<p>' + classd[i].type_name + '</p>';
+								img += '</li>';
+							}
+							$(".tab_list").html(img);
+						}
+					}
+				});
+				
+				//获取推荐课程
+				$.ajax({
+					type: "get",
+					url: site_app + "/api/Clasrom/clroomstalist",
+					data: {
+						page: "1",
+						state: "2",
+					},
+					dataType: "json",
+					success: function(e) {
+						if(e.error == 0) {
+							var classd = e.data.data;
+							var img = '';
+							for(var i = 0; i < classd.length; i++) {
+								img += '<li data-id="' + classd[i].calssr_id + '"  >';
+								img += '	<img src="' + classd[i].calssr_img + '" />';
+								img += '</li>';
+							}
+							$(".type_list").html(img);
+						}
+					}
+				});
+				//tab_list 分类
+				$(document).on('click','.tab_list li',function(){
+					var cid = $(this).attr('data-id');
+					var name = $(this).attr('data-name');
+					mui.openWindow({
+						url: "room_list.html",
+						id: "room_list",
+						show: {
+							autoShow: true //页面loaded事件发生后自动显示，默认为true
+						},
+						extras: {
+							cid: cid,
+							name:name
+						},
+						waiting: {
+							autoShow: false //自动显示等待框，默认为true
+							//title: '', //等待对话框上显示的提示内容
+						}
+					})
+				})
+				//详情
+				$(document).on('click','.type_list li',function(){
+					var cid = $(this).attr('data-id');
+					mui.openWindow({
+						url: "room_details.html",
+						id: "room_details",
+						show: {
+							autoShow: true //页面loaded事件发生后自动显示，默认为true
+						},
+						extras: {
+							cid: cid
+						},
+						createNew:true,
+						waiting: {
+							autoShow: false //自动显示等待框，默认为true
+							//title: '', //等待对话框上显示的提示内容
+						}
+					})
+				})
+				plus.nativeUI.closeWaiting();
+			})
+		</script>
+	</body>
+
+</html>

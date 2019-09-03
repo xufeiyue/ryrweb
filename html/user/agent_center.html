@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/style.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/agent_center.css" />
+		<link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_812297_pq5c4cjadsn.css" />
+	</head>
+
+	<body>
+		<!--<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">代理中心</h1>
+		</header>-->
+		<div class="mui-content">
+			<div class="head">
+				<div class="title">
+					<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+					<h1 class="mui-title">我的代理商</h1>
+				</div>
+				<div class="content">
+					<img src="../../img/avater_image.png" />
+					<p class="user_name">--</p>
+					<p>代理等级:<span class="grade"></span></p>
+				</div>
+			</div>
+			<div class="region">
+				<ul>
+					<li>
+						<img src="../../img/ag_1.png" />
+						<p>我的代理等级</p>
+						<p class="region_tip grade">荣耀V5</p>
+					</li>
+					<li>
+						<img src="../../img/ag_2.png" />
+						<p>我的代理区域</p>
+						<p class="region_tip city">--</p>
+					</li>
+					<div class="clear"></div>
+				</ul>
+			</div>
+			<div class="xj_num">
+				<img src="../../img/ag_3.png" />
+				<p>我的区域用户人数</p>
+				<p><span class="num">0</span>人</p>
+			</div>
+			<div class="assets">
+				<p>总资产(元)</p>
+				<div class="info">
+					<span class="money">0</span> 元
+				</div>
+				<button type="button" class="mui-btn mui-btn-blue carry_btn">提现</button>
+			</div>
+		</div>
+		<script src="../../js/jquery-1.8.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/common.js"></script>
+		<script type="text/javascript">
+			mui.plusReady(function() {
+				mui.init({
+					hardwareAccelerated: true,
+				});
+
+				plus.nativeUI.showWaiting("加载中");
+				var tokens = getToken();
+				getToken();
+				$.ajax({
+					type: "post",
+					url: site_app + "/api/agent/index",
+					data: {
+						token: tokens
+					},
+					dataType: "json",
+					success: function(e) {
+						console.log(e);
+						if(e.error == 0){
+							$(".user_name").html(e.data.user_name);
+							$(".grade").html(e.data.user_type);
+							$(".city").html(e.data.agent_type_name);
+							$(".num").html(e.data.count);
+							$(".money").html(e.data.user_money);
+						}
+					}
+				});
+				$(".carry_btn").click(function() {
+					mui.openWindow({
+						url: "withdraw_cash.html",
+						id: "withdraw_cash",
+						show: {
+							autoShow: true //页面loaded事件发生后自动显示，默认为true
+						},
+						waiting: {
+							autoShow: false //自动显示等待框，默认为true
+							//title: '', //等待对话框上显示的提示内容
+						}
+					})
+				});
+				$("body").ajaxStop(function() {
+					plus.nativeUI.closeWaiting();
+				});
+			})
+		</script>
+	</body>
+
+</html>

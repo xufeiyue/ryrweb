@@ -1,0 +1,807 @@
+{
+    "@platforms" : [ "android", "iPhone", "iPad" ],
+    "id" : "H59BF611E", /*应用的标识，创建应用时自动生成，勿手动修改*/
+    "name" : "e融知道", /*应用名称，程序桌面图标名称*/
+    "version" : {
+        "name" : "1.1.4", /*应用版本名称*/
+        "code" : 87
+    },
+    "description" : "", /*应用描述信息*/
+    "icons" : {
+        "72" : "icon.png"
+    },
+    "launch_path" : "index.html", /*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+    "developer" : {
+        "name" : "", /*开发者名称*/
+        "email" : "", /*开发者邮箱地址*/
+        "url" : "http://www.dcloud.io"
+    },
+    "permissions" : {
+        "Accelerometer" : {
+            "description" : "访问加速度感应器"
+        },
+        "Cache" : {
+            "description" : "管理应用缓存"
+        },
+        "Camera" : {
+            "description" : "访问摄像头"
+        },
+        "Console" : {
+            "description" : "跟踪调试输出日志"
+        },
+        "Contacts" : {
+            "description" : "访问系统联系人信息"
+        },
+        "Device" : {
+            "description" : "访问设备信息"
+        },
+        "Downloader" : {
+            "description" : "文件下载管理"
+        },
+        "Events" : {
+            "description" : "应用扩展事件"
+        },
+        "File" : {
+            "description" : "访问本地文件系统"
+        },
+        "Gallery" : {
+            "description" : "访问系统相册"
+        },
+        "Invocation" : {
+            "description" : "使用Native.js能力"
+        },
+        "Orientation" : {
+            "description" : "访问方向感应器"
+        },
+        "Proximity" : {
+            "description" : "访问距离感应器"
+        },
+        "Storage" : {
+            "description" : "管理应用本地数据"
+        },
+        "Uploader" : {
+            "description" : "管理文件上传任务"
+        },
+        "Runtime" : {
+            "description" : "访问运行期环境"
+        },
+        "XMLHttpRequest" : {
+            "description" : "跨域网络访问"
+        },
+        "Zip" : {
+            "description" : "文件压缩与解压缩"
+        },
+        "Webview" : {
+            "description" : "窗口管理"
+        },
+        "NativeUI" : {
+            "description" : "原生UI控件"
+        },
+        "Navigator" : {
+            "description" : "浏览器信息"
+        },
+        "NativeObj" : {
+            "description" : "原生对象"
+        },
+        "Geolocation" : {
+            "description" : "位置信息"
+        },
+        "Maps" : {},
+        "Share" : {},
+        "OAuth" : {}
+    },
+    "plus" : {
+        "splashscreen" : {
+            "autoclose" : true, /*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
+            "waiting" : false,
+            "delay" : "4000"
+        },
+        "runmode" : "liberate", /*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
+        "signature" : "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==", /*可选，保留给应用签名，暂不使用*/
+        "statusbar" : {
+            "immersed" : true
+        },
+        "distribute" : {
+            "plugins" : {
+                "maps" : {
+                    "baidu" : {
+                        "appkey_ios" : "ksyDKR5oYoRuNOOZepBjPjoT0FkZQGsh",
+                        "appkey_android" : "PamUfMG4cCog4Lr0RmmPemq35DT8RrQD",
+                        "appkey" : "",
+                        "description" : ""
+                    }
+                },
+                "share" : {
+                    "weixin" : {
+                        "appid" : "wxd725aa76d4336da5",
+                        "appsecret" : "adf035b805d7633316717f12ba4b5c7d"
+                    }
+                },
+                "oauth" : {},
+                "payment" : {}
+            },
+            "apple" : {
+                "appid" : "", /*iOS应用标识，苹果开发网站申请的appid，如io.dcloud.HelloH5*/
+                "mobileprovision" : "", /*iOS应用打包配置文件*/
+                "password" : "", /*iOS应用打包个人证书导入密码*/
+                "p12" : "", /*iOS应用打包个人证书，打包配置文件关联的个人证书*/
+                "devices" : "universal", /*iOS应用支持的设备类型，可取值iphone/ipad/universal*/
+                "frameworks" : [],
+                "plistcmds" : [
+                    "Set :NSCameraUsageDescription 拍照/摄像/扫描二维码",
+                    "Set :NSMicrophoneUsageDescription 录制音频文件/语音识别",
+                    "Set :NSPhotoLibraryUsageDescription 选择图片",
+                    "Set :NSPhotoLibraryAddUsageDescription 保存图片",
+                    "Set :NSContactsUsageDescription 访问通讯录",
+                    "Set :NSLocationAlwaysUsageDescription 获取用户当前位置，推荐附近商家商品并导航到商家门店",
+                    "Set :NSLocationWhenInUseUsageDescription 获取用户当前位置，推荐附近商家商品并导航到商家门店",
+                    "Set :NSLocationAlwaysAndWhenInUseUsageDescription 获取用户当前位置，推荐附近商家商品并导航到商家门店"
+                ]
+            },
+            "google" : {
+                "packagename" : "", /*Android应用包名，如io.dcloud.HelloH5*/
+                "keystore" : "", /*Android应用打包使用的密钥库文件*/
+                "password" : "", /*Android应用打包使用密钥库中证书的密码*/
+                "aliasname" : "", /*Android应用打包使用密钥库中证书的别名*/
+                "permissions" : [
+                    "<uses-feature android:name=\"android.hardware.camera\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
+                    "<uses-permission android:name=\"android.permission.CAMERA\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.DEVICE_POWER\"/>",
+                    "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
+                    "<uses-permission android:name=\"android.permission.INTERNET\"/>",
+                    "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
+                    "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+                    "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
+                ]
+            },
+            "orientation" : [ "portrait-primary" ], /*应用支持的方向，portrait-primary：竖屏正方向；portrait-secondary：竖屏反方向；landscape-primary：横屏正方向；landscape-secondary：横屏反方向*/
+            "icons" : {
+                "ios" : {
+                    "prerendered" : true, /*应用图标是否已经高亮处理，在iOS6及以下设备上有效*/
+                    "auto" : "", /*应用图标，分辨率：512x512，用于自动生成各种尺寸程序图标*/
+                    "iphone" : {
+                        "normal" : "unpackage/res/icons/57x57.png", /*iPhone普通屏幕程序图标，分辨率：57x57*/
+                        "retina" : "unpackage/res/icons/114x114.png", /*iPhone高分屏程序图标，分辨率：114x114*/
+                        "retina7" : "unpackage/res/icons/120x120.png", /*iPhone iOS7高分屏程序图标，分辨率：120x120*/
+                        "spotlight-normal" : "unpackage/res/icons/29x29.png", /*iPhone Spotlight搜索程序图标，分辨率：29x29*/
+                        "spotlight-retina" : "unpackage/res/icons/58x58.png", /*iPhone高分屏Spotlight搜索程序图标，分辨率：58x58*/
+                        "spotlight-retina7" : "unpackage/res/icons/80x80.png", /*iPhone iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*/
+                        "settings-normal" : "unpackage/res/icons/29x29.png", /*iPhone设置页面程序图标，分辨率：29x29*/
+                        "settings-retina" : "unpackage/res/icons/58x58.png",
+                        "retina8" : "unpackage/res/icons/180x180.png",
+                        "settings-retina8" : "unpackage/res/icons/87x87.png",
+                        "app@2x" : "unpackage/res/icons/120x120.png",
+                        "app@3x" : "unpackage/res/icons/180x180.png",
+                        "notification@2x" : "unpackage/res/icons/40x40.png",
+                        "notification@3x" : "unpackage/res/icons/60x60.png",
+                        "settings@2x" : "unpackage/res/icons/58x58.png",
+                        "settings@3x" : "unpackage/res/icons/87x87.png",
+                        "spotlight@2x" : "unpackage/res/icons/80x80.png",
+                        "spotlight@3x" : "unpackage/res/icons/120x120.png"
+                    },
+                    "ipad" : {
+                        "normal" : "unpackage/res/icons/72x72.png", /*iPad普通屏幕程序图标，分辨率：72x72*/
+                        "retina" : "unpackage/res/icons/144x144.png", /*iPad高分屏程序图标，分辨率：144x144*/
+                        "normal7" : "unpackage/res/icons/76x76.png", /*iPad iOS7程序图标，分辨率：76x76*/
+                        "retina7" : "unpackage/res/icons/152x152.png", /*iPad iOS7高分屏程序图标，分辨率：152x152*/
+                        "spotlight-normal" : "unpackage/res/icons/50x50.png", /*iPad Spotlight搜索程序图标，分辨率：50x50*/
+                        "spotlight-retina" : "unpackage/res/icons/100x100.png", /*iPad高分屏Spotlight搜索程序图标，分辨率：100x100*/
+                        "spotlight-normal7" : "unpackage/res/icons/40x40.png", /*iPad iOS7 Spotlight搜索程序图标，分辨率：40x40*/
+                        "spotlight-retina7" : "unpackage/res/icons/80x80.png", /*iPad iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*/
+                        "settings-normal" : "unpackage/res/icons/29x29.png", /*iPad设置页面程序图标，分辨率：29x29*/
+                        "settings-retina" : "unpackage/res/icons/58x58.png",
+                        "app" : "unpackage/res/icons/76x76.png",
+                        "app@2x" : "unpackage/res/icons/152x152.png",
+                        "notification" : "unpackage/res/icons/20x20.png",
+                        "notification@2x" : "unpackage/res/icons/40x40.png",
+                        "proapp@2x" : "unpackage/res/icons/167x167.png",
+                        "settings" : "unpackage/res/icons/29x29.png",
+                        "settings@2x" : "unpackage/res/icons/58x58.png",
+                        "spotlight" : "unpackage/res/icons/40x40.png",
+                        "spotlight@2x" : "unpackage/res/icons/80x80.png"
+                    },
+                    "appstore" : "img/logo.png"
+                },
+                "android" : {
+                    "mdpi" : "unpackage/res/icons/48x48.png", /*普通屏程序图标，分辨率：48x48*/
+                    "ldpi" : "unpackage/res/icons/48x48.png", /*大屏程序图标，分辨率：48x48*/
+                    "hdpi" : "unpackage/res/icons/72x72.png", /*高分屏程序图标，分辨率：72x72*/
+                    "xhdpi" : "unpackage/res/icons/96x96.png", /*720P高分屏程序图标，分辨率：96x96*/
+                    "xxhdpi" : "unpackage/res/icons/144x144.png",
+                    "xxxhdpi" : "unpackage/res/icons/192x192.png"
+                }
+            },
+            "splashscreen" : {
+                "ios" : {
+                    "iphone" : {
+                        "default" : ""
+                    },
+                    "ipad" : {
+                        /*iPad竖屏启动图片，分辨率：768x1004*//*iPad高分屏竖屏图片，分辨率：1536x2008*/
+                        "landscape" : "", /*iPad横屏启动图片，分辨率：1024x748*/
+                        "landscape-retina" : "", /*iPad高分屏横屏启动图片，分辨率：2048x1496*/
+
+                        /*iPad iOS7竖屏启动图片，分辨率：768x1024*//*iPad iOS7高分屏竖屏图片，分辨率：1536x2048*/
+                        "landscape7" : "", /*iPad iOS7横屏启动图片，分辨率：1024x768*/
+                        "landscape-retina7" : ""
+                    }
+                },
+                "android" : {
+                    "mdpi" : "", /*普通屏启动图片，分辨率：240x282*/
+                    "ldpi" : "",
+                    "hdpi" : "E:/传输文件/ryn/ryn/start_pic/480x762---Android高分启动页.png",
+                    "xhdpi" : "E:/传输文件/ryn/ryn/start_pic/720x1242---Android720P高分启动页.png",
+                    "xxhdpi" : "E:/传输文件/ryn/ryn/start_pic/1080x1882---Android1080P高分启动页.png"
+                }
+            }
+        },
+        "ads" : {
+            "rp" : false,
+            "splash" : false,
+            "push" : false
+        },
+        "adid" : ""
+    },
+    "dependencies" : {
+        "pages" : {
+            "index.html" : {
+                "resources" : [
+                    "html/index/home.html",
+                    "html/find/find.html",
+                    "html/wallet/wallet.html",
+                    "html/user/user.html",
+                    "html/apply/apply_card.html",
+                    "img/nav_4-1.png",
+                    "img/nav_1.png",
+                    "html/find/shop_mall.html",
+                    "html/index/classRoom.html",
+                    "img/nav_3-1.png"
+                ],
+                "refer" : [
+                    // "html/index/banner.html",
+                    "html/user/link.html",
+                    "html/user/setting.html",
+                    "html/user/upload_head.html",
+                    "html/login/login.html"
+                ],
+                "priority" : 0
+            },
+            // "html/index/banner.html" : {
+            //     "resources" : [],
+            //     "refer" : [ "index.html" ],
+            //     "priority" : 0
+            // },
+            "html/find/find.html" : {
+                "resources" : [
+                    "img/smalltool_used_shop.png",
+                    "img/smalltool_card_evaluation.png",
+                    "img/smalltool_caipiao_icon.png",
+                    "img/smalltool_integral_icon.png",
+                    "img/discovery_more.png",
+                    "img/smalltool_illegalquery_icon.png",
+                    "img/smalltool_insurance_icon.png"
+                ],
+                "refer" : [],
+                "priority" : 0
+            },
+            "html/user/user.html" : {
+                "resources" : [
+                    "html/user/upload_head.html",
+                    "js/common.js",
+                    "js/mui.min.js",
+                    "js/jquery-1.8.0.min.js",
+                    "img/avater_image.png",
+                    "img/user_5.png",
+                    "img/user_1.png",
+                    "img/user_7.png",
+                    "img/user_3.png",
+                    "img/user_10.png",
+                    "img/user_6.png",
+                    "img/user_8.png",
+                    "css/mui.min.css",
+                    "css/user.css",
+                    "css/style.css",
+                    "img/user_9.png",
+                    "img/user_2.png",
+                    "img/user_4.png"
+                ],
+                "refer" : [
+                    "html/user/data_authentication.html",
+                    "html/wallet/wallet.html",
+                    "html/user/my_trade.html",
+                    "html/user/withdraw_cash.html",
+                    "html/login/login.html",
+                    "html/user/my_bankCard.html",
+                    "html/user/my_rate.html",
+                    "html/user/my_member.html",
+                    "html/index/my_voucher.html",
+                    "html/user/my_goldCoin.html",
+                    "html/user/agent_apply.html",
+                    "html/user/my_shareProfit.html",
+                    "html/user/help_center.html",
+                    "html/user/setting.html",
+                    "html/user/invite_friend.html",
+                    "html/user/share_code.html",
+                    "html/user/activation.html",
+                    "html/user/my_grade.html",
+                    "html/user/my_discount.html",
+                    "html/user/upgrade.html",
+                    "html/user/card_schedule.html",
+                    "html/user/Loan_order.html",
+                    "html/index/message.html",
+                    "html/user/agent_center.html",
+                    "index.html",
+                    "html/user/exchange.html"
+                ],
+                "priority" : 0
+            },
+            "html/index/home.html" : {
+                "resources" : [ "js/common.js" ],
+                "refer" : [
+                    "html/index/binding_card.html",
+                    "html/index/my_voucher.html",
+                    "html/index/card_info.html",
+                    "html/index/repayment.html",
+                    "html/user/my_bankCard.html",
+                    "html/index/kefu.html",
+                    "html/index/message.html",
+                    "html/user/activation.html",
+                    "html/index/receivables.html",
+                    "html/user/invite_friend.html",
+                    "html/apply/apply_card.html",
+                    "html/user/my_member.html",
+                    "html/user/my_goldCoin.html",
+                    "html/index/card_list.html",
+                    "html/login/login.html",
+                    "html/user/upgrade.html",
+                    "html/index/flower_chanting.html",
+                    "html/index/sk_list.html",
+                    "html/apply/apply.html",
+                    "html/loan/loan.html",
+                    "html/index/receivables_iframe.html",
+                    "html/index/banner_h_iframe.html",
+                    "html/index/message_details.html",
+                    "html/index/credit_iframe.html",
+                    "html/user/exchange.html",
+                    "html/index/classRoom.html",
+                    "html/index/card_management.html"
+                ],
+                "priority" : 0
+            },
+            "html/user/data_authentication.html" : {
+                "resources" : [],
+                "refer" : [
+                    "html/user/identity_rz.html",
+                    "html/user/photo_rz.html",
+                    "html/user/bankCard_rz.html",
+                    "html/user/photo_tg.html"
+                ],
+                "priority" : 0
+            },
+            "html/user/identity_rz.html" : {
+                "resources" : [],
+                "refer" : [ "html/user/photo_rz.html", "html/user/activation.html" ],
+                "priority" : 0
+            },
+            "html/index/card_info.html" : {
+                "resources" : [],
+                "refer" : [
+                    "html/index/receivables.html",
+                    "html/index/edit_card.html",
+                    "html/index/bank_dot.html",
+                    "html/index/repayment.html",
+                    "html/index/repayment_list.html"
+                ],
+                "priority" : 0
+            },
+            "html/index/receivables.html" : {
+                "resources" : [ "img/no_creditbill_icon.png" ],
+                "refer" : [
+                    "html/index/binding_card.html",
+                    "html/user/my_trade.html",
+                    "html/user/help_center.html",
+                    "html/index/receivables_record.html",
+                    "html/index/receivables_iframe.html",
+                    "html/index/receivables_pay.html"
+                ],
+                "priority" : 0
+            },
+            "html/index/repayment.html" : {
+                "resources" : [],
+                "refer" : [
+                    "html/index/payment_history.html",
+                    "html/index/repayment_list.html",
+                    "html/index/preview_list.html",
+                    "html/index/receivables_iframe.html",
+                    "html/index/plan_details.html"
+                ],
+                "priority" : 0
+            },
+            "html/user/withdraw_cash.html" : {
+                "resources" : [],
+                "refer" : [
+                    "html/user/tx_detailed.html",
+                    "html/index/binding_card.html",
+                    "html/index/kefu.html"
+                ],
+                "priority" : 0
+            },
+            "html/login/login.html" : {
+                "resources" : [ "img/auth_code_icon.png" ],
+                "refer" : [
+                    "html/login/reg.html",
+                    "html/login/forget_pw.html",
+                    "html/index/home.html",
+                    "index.html"
+                ],
+                "priority" : 0
+            },
+            "html/login/reg.html" : {
+                "resources" : [],
+                "refer" : [ "html/login/reg_protocol.html" ],
+                "priority" : 0
+            },
+            "html/user/my_bankCard.html" : {
+                "resources" : [],
+                "refer" : [
+                    "html/user/add_bankCard.html",
+                    "html/login/login.html",
+                    "html/index/binding_card.html",
+                    "html/index/card_info.html"
+                ],
+                "priority" : 0
+            },
+            "html/user/my_goldCoin.html" : {
+                "resources" : [],
+                "refer" : [ "html/user/gold_detailed.html" ],
+                "priority" : 0
+            },
+            "html/user/my_shareProfit.html" : {
+                "resources" : [],
+                "refer" : [
+                    "html/user/direct_invite.html",
+                    "html/user/indirect_invite.html",
+                    "html/user/sj_profit.html",
+                    "html/user/hk_profit.html",
+                    "html/user/sk_profit.html",
+                    "html/user/trade_returns.html",
+                    "html/user/applyCard_detailed.html",
+                    "html/user/loan_detailed.html",
+                    "html/user/withdraw_cash.html",
+                    "html/user/xj_list.html"
+                ],
+                "priority" : 0
+            },
+            "html/user/help_center.html" : {
+                "resources" : [],
+                "refer" : [
+                    "html/user/help_list.html",
+                    "html/user/help_detailed.html",
+                    "html/login/login.html"
+                ],
+                "priority" : 0
+            },
+            "html/user/setting.html" : {
+                "resources" : [],
+                "refer" : [
+                    "html/user/modify_pw.html",
+                    "html/login/login.html",
+                    "html/user/feedback.html"
+                ],
+                "priority" : 0
+            },
+            "html/user/modify_pw.html" : {
+                "resources" : [],
+                "refer" : [ "html/login/forget_pw.html", "html/login/login.html" ],
+                "priority" : 0
+            },
+            "html/apply/apply_card.html" : {
+                "resources" : [
+                    "img/qrcode_share.png",
+                    "js/common.js",
+                    "js/mui.min.js",
+                    "img/login.png",
+                    "js/jquery-1.8.0.min.js",
+                    "html/apply/apply.html",
+                    "html/apply/apply_list.html",
+                    "html/apply/apply_list1.html"
+                ],
+                "refer" : [
+                    "html/login/login.html",
+                    "html/apply/binding_iframe.html",
+                    "html/apply/bankinfo.html"
+                ],
+                "priority" : 0
+            },
+            "html/user/help_list.html" : {
+                "resources" : [],
+                "refer" : [ "html/user/help_detailed.html" ],
+                "priority" : 0
+            },
+            "html/user/invite_friend.html" : {
+                "resources" : [],
+                "refer" : [ "html/user/link.html", "html/user/share_code.html" ],
+                "priority" : 0
+            },
+            "html/user/bankCard_rz.html" : {
+                "resources" : [],
+                "refer" : [ "html/user/change_bankCard.html", "html/user/activation.html" ],
+                "priority" : 0
+            },
+            "html/user/upload_head.html" : {
+                "resources" : [],
+                "refer" : [ "html/login/login.html", "html/user/activation.html" ],
+                "priority" : 0
+            },
+            "html/login/forget_pw.html" : {
+                "resources" : [],
+                "refer" : [ "html/login/login.html" ],
+                "priority" : 0
+            },
+            "html/user/link.html" : {
+                "resources" : [],
+                "refer" : [
+                    "html/login/login.html",
+                    "html/user/data_authentication.html",
+                    "html/user/activation.html"
+                ],
+                "priority" : 0
+            },
+            "html/index/binding_card.html" : {
+                "resources" : [],
+                "refer" : [
+                    "html/login/login.html",
+                    "html/user/data_authentication.html",
+                    "index.html",
+                    "html/user/activation.html"
+                ],
+                "priority" : 0
+            },
+            "html/index/message.html" : {
+                "resources" : [],
+                "refer" : [ "html/login/login.html", "html/index/message_details.html" ],
+                "priority" : 0
+            },
+            "html/user/my_member.html" : {
+                "resources" : [],
+                "refer" : [ "html/user/member_iframe.html", "html/user/activation.html" ],
+                "priority" : 0
+            },
+            "html/user/share_code.html" : {
+                "resources" : [],
+                "refer" : [
+                    "html/user/data_authentication.html",
+                    "html/user/activation.html",
+                    "html/user/invite_friend.html"
+                ],
+                "priority" : 0
+            },
+            "html/wallet/wallet.html" : {
+                "resources" : [],
+                "refer" : [
+                    "html/index/binding_card.html",
+                    "html/index/receivables.html",
+                    "html/user/invite_friend.html",
+                    "html/user/help_center.html",
+                    "html/user/activation.html"
+                ],
+                "priority" : 0
+            },
+            "html/index/preview_list.html" : {
+                "resources" : [],
+                "refer" : [
+                    "html/index/repayment_list.html",
+                    "index.html",
+                    "html/index/home.html",
+                    "html/index/receivables_iframe.html",
+                    "html/index/receivables_pay.html"
+                ],
+                "priority" : 0
+            },
+            "html/index/repayment_list.html" : {
+                "resources" : [],
+                "refer" : [ "index.html", "html/user/my_member.html", "html/index/home.html" ],
+                "priority" : 0
+            },
+            "html/user/change_bankCard.html" : {
+                "resources" : [],
+                "refer" : [ "html/user/activation.html" ],
+                "priority" : 0
+            },
+            "html/user/feedback.html" : {
+                "resources" : [],
+                "refer" : [ "html/user/activation.html" ],
+                "priority" : 0
+            },
+            "html/user/photo_tg.html" : {
+                "resources" : [],
+                "refer" : [ "html/user/activation.html" ],
+                "priority" : 0
+            },
+            "html/index/payment_history.html" : {
+                "resources" : [],
+                "refer" : [ "html/index/repayment_list.html" ],
+                "priority" : 0
+            },
+            "html/find/shop_mall.html" : {
+                "resources" : [],
+                "refer" : [
+                    "html/find/mall_list.html",
+                    "html/find/product_details.html",
+                    "html/find/mall_search.html"
+                ],
+                "priority" : 0
+            },
+            "html/find/mall_list.html" : {
+                "resources" : [],
+                "refer" : [ "html/find/product_details.html" ],
+                "priority" : 0
+            },
+            "html/find/product_details.html" : {
+                "resources" : [],
+                "refer" : [ "html/find/shop_order.html" ],
+                "priority" : 0
+            },
+            "html/index/card_list.html" : {
+                "resources" : [],
+                "refer" : [
+                    "html/index/binding_card.html",
+                    "html/index/repayment.html",
+                    "html/index/receivables.html",
+                    "html/index/card_info.html"
+                ],
+                "priority" : 0
+            },
+            "html/user/upgrade.html" : {
+                "resources" : [],
+                "refer" : [
+                    "html/user/member_benefit.html",
+                    "html/user/agent_benefit.html",
+                    "html/user/my_m.html",
+                    "html/user/my_member.html",
+                    "html/user/agent_apply.html"
+                ],
+                "priority" : 0
+            },
+            "html/user/my_m.html" : {
+                "resources" : [],
+                "refer" : [ "html/user/member_iframe.html" ],
+                "priority" : 0
+            },
+            "html/user/member_benefit.html" : {
+                "resources" : [],
+                "refer" : [ "html/user/my_member.html" ],
+                "priority" : 0
+            },
+            "html/index/sk_list.html" : {
+                "resources" : [ "js/common.js", "js/mui.min.js", "js/jquery-1.8.0.min.js" ],
+                "refer" : [
+                    "html/index/card_info.html",
+                    "html/index/receivables_record.html",
+                    "html/index/receivables.html",
+                    "html/index/binding_card.html"
+                ],
+                "priority" : 0
+            },
+            "html/apply/apply.html" : {
+                "resources" : [],
+                "refer" : [ "html/apply/apply_card.html" ],
+                "priority" : 0
+            },
+            "html/apply/bankinfo.html" : {
+                "resources" : [],
+                "refer" : [ "html/apply/binding_iframe.html", "html/apply/binding.html" ],
+                "priority" : 0
+            },
+            "html/apply/binding.html" : {
+                "resources" : [],
+                "refer" : [ "html/apply/binding_iframe.html" ],
+                "priority" : 0
+            },
+            "html/loan/loan.html" : {
+                "resources" : [],
+                "refer" : [ "html/loan/loan_details.html" ],
+                "priority" : 0
+            },
+            "html/loan/loan_details.html" : {
+                "resources" : [],
+                "refer" : [ "html/loan/loan_iframe.html" ],
+                "priority" : 0
+            },
+            "html/user/card_schedule.html" : {
+                "resources" : [],
+                "refer" : [ "html/user/schedule_iframe.html" ],
+                "priority" : 0
+            },
+            "html/user/agent_apply.html" : {
+                "resources" : [],
+                "refer" : [ "html/user/withdraw_cash.html", "html/index/kefu.html" ],
+                "priority" : 0
+            },
+            "html/index/receivables_record.html" : {
+                "resources" : [
+                    "js/common.js",
+                    "js/mui.min.js",
+                    "img/login.png",
+                    "js/jquery-1.8.0.min.js"
+                ],
+                "refer" : [],
+                "priority" : 0
+            },
+            "html/user/exchange.html" : {
+                "resources" : [],
+                "refer" : [ "html/user/exchange_center.html" ],
+                "priority" : 0
+            },
+            "html/user/exchange_center.html" : {
+                "resources" : [],
+                "refer" : [ "html/user/exchange_details.html" ],
+                "priority" : 0
+            },
+            "html/index/classRoom.html" : {
+                "resources" : [],
+                "refer" : [ "html/index/room_details.html", "html/index/room_list.html" ],
+                "priority" : 0
+            },
+            "html/index/room_list.html" : {
+                "resources" : [],
+                "refer" : [ "html/index/room_details.html" ],
+                "priority" : 0
+            },
+            "html/find/shop_order.html" : {
+                "resources" : [],
+                "refer" : [ "html/find/add_address.html", "html/find/address.html" ],
+                "priority" : 0
+            },
+            "html/index/room_details.html" : {
+                "resources" : [],
+                "refer" : [ "html/index/room_list.html" ],
+                "priority" : 0
+            },
+            "html/find/address.html" : {
+                "resources" : [],
+                "refer" : [
+                    "html/find/add_address.html",
+                    "html/find/shop_order.html",
+                    "html/find/edit_address.html"
+                ],
+                "priority" : 0
+            },
+            "html/find/add_address.html" : {
+                "resources" : [],
+                "refer" : [ "html/find/shop_order.html" ],
+                "priority" : 0
+            },
+            "html/index/receivables_pay.html" : {
+                "resources" : [],
+                "refer" : [ "html/index/repayment_list.html" ],
+                "priority" : 0
+            },
+            "html/index/card_management.html" : {
+                "resources" : [],
+                "refer" : [
+                    "html/index/binding_card.html",
+                    "html/index/repayment.html",
+                    "html/index/payment_history.html"
+                ],
+                "priority" : 0
+            }
+        },
+        "idle" : {
+            "resources" : [ "fonts/mui.ttf", "js/mui.js", "css/mui.css" ]
+        }
+    }
+}

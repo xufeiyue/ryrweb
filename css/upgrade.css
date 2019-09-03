@@ -1,0 +1,190 @@
+header {
+	width: 100%;   
+	height: 70px !important;
+	background: url(../img/login.png) no-repeat;
+	background-size:  cover;
+	box-shadow: none !important;
+	padding-top: 28px; 
+}
+.mui-content{
+	padding-top: 70px !important;
+}
+
+
+header a {
+	color: #fff;
+}
+
+.mui-title {
+	color: #fff!important;
+}
+.mui-content{
+	background: #fff;
+}
+
+.title{
+	text-align: center;
+	padding-top: 40px;
+}
+.title img{
+	width: 16%;
+}
+.title p{
+	color: #000;
+	font-size: 15px;
+	margin-top: 10px;
+}
+.up_list{
+	margin-top: 30px;
+	padding: 0 15px;
+}
+.up_list ul li{
+	display: flex;
+	align-items: center;
+	margin-bottom: 15px;
+}
+.up_list ul li .left{
+	width: 80%;
+	float: left;
+}
+.up_list ul li .left img{
+	width: 70px;
+	height: 64px;
+	float: left;
+	margin-right: 10px;
+}
+.up_list ul li .left .up_js{
+	font-size: 15px;
+	color: #000;
+	line-height: 32px;  
+}
+.up_list ul li .left .up_js p{
+	color: #A3A3A3;
+	font-size: 13px;
+}
+.up_list ul li .right{
+	width: 20%;
+	text-align: right;
+}
+.up_list ul li .right .btn{
+	display: inline-block;
+	padding: 4px 15px 2px;
+	font-size: 14px;
+	color: #fff;
+	background: #0085FE;
+	border-radius: 20px;
+}
+
+.clear{
+	clear: both;
+}
+
+/*会员权益介绍*/
+.benefit_list{
+	margin-top: 30px;
+	padding: 0 15px;
+}
+.benefit_list li{
+	font-size: 13px;
+	line-height: 18px;
+	margin-bottom: 10px;
+}
+.member_upgrade{
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background: #0085FE;
+	padding: 15px;
+	font-size: 15px;
+	border: 0;
+	border-radius: 0;
+}
+
+/*代理商介绍*/
+.agent_table{
+	margin: 30px auto;
+	padding: 0 15px;
+}
+.agent_table table{
+	width: 100%;
+}
+.agent_table table thead th{
+	height: 25px;
+	line-height: 25px;
+	background: #4AB6FE;
+	color: #fff;
+	font-size: 14px;
+	font-weight: 400;
+}
+.agent_table table thead th:first-child{
+	width: 30%;
+}
+.agent_table table tbody td{
+	height: 30px;
+	line-height: 18px;
+	text-align: center;
+	font-size: 12px;
+}
+.agent_table table .cuo{
+	font-size: 20px;
+	color: #ff3300;
+}
+.agent_table table .dui{
+	font-size: 20px;
+	color: #4AB6FE;
+}
+.agent_btn{
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	border-radius: 0;
+	padding: 15px;
+	background: #0085FE;
+	border: 0;
+	font-size: 15px;
+}
+
+/*vip套餐*/
+.up_list ul li .left .money{
+	width: 70px;
+	height: 64px;
+	float: left;
+	margin-right: 10px;
+}
+/*支付*/
+.passageway{
+	padding: 15px;
+}
+.passageway .way_title{
+	font-size: 15px;
+	color: #000;
+}
+.way_list li{
+	padding: 10px 0;
+	border-bottom: 1px solid #eee;
+}
+.way_list li .way_info{
+	font-size: 16px;
+	color: #000;
+}
+.way_list li .way_info p{
+	font-size: 12px;
+	margin: 0;
+}
+.up_list ul li .right .yes{
+	background: #ccc !important;
+	padding: 4px 10px;
+}
+.mui-radio input[type=radio]{
+	top: 8px;
+}
+.mui-radio input[type=radio]:checked:before {
+	content: '\e442' !important;
+	color: #4AB6FE !important;
+}
+
+.mui-radio input[type=radio]:before {
+	font-size: 24px !important;
+}

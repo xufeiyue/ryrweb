@@ -1,0 +1,566 @@
+{
+	"index.html": {
+		"resources": [
+			"html/index/home.html",
+			"html/user/user.html",
+			"html/find/find.html",
+			"html/wallet/wallet.html",
+			"html/apply/apply_card.html",
+			"img/nav_4-1.png",
+			"img/nav_1.png",
+			"html/find/shop_mall.html",
+			"html/index/classRoom.html",
+			"img/nav_3-1.png"
+		],
+		"refer": [
+			"html/index/home.html",
+			"html/apply/apply_card.html",
+			"html/find/find.html",
+			"html/wallet/wallet.html",
+			"html/user/user.html",
+			"html/index/banner.html",
+			"html/user/link.html",
+			"html/user/setting.html",
+			"html/find/shop_mall.html",
+			"html/index/classRoom.html",
+			"html/user/upload_head.html",
+			"html/login/login.html"
+		]
+	},
+	"html/index/banner.html": {
+		"refer": [
+			"index.html"
+		],
+		"resources": []
+	},
+	"html/find/find.html": {
+		"resources": [
+			"img/smalltool_used_shop.png",
+			"img/smalltool_card_evaluation.png",
+			"img/smalltool_caipiao_icon.png",
+			"img/smalltool_integral_icon.png",
+			"img/discovery_more.png",
+			"img/smalltool_illegalquery_icon.png",
+			"img/smalltool_insurance_icon.png"
+		],
+		"refer": []
+	},
+	"html/user/user.html": {
+		"resources": [
+			"html/user/upload_head.html",
+			"js/common.js",
+			"js/mui.min.js",
+			"js/jquery-1.8.0.min.js",
+			"img/avater_image.png",
+			"img/user_5.png",
+			"img/user_1.png",
+			"img/user_7.png",
+			"img/user_3.png",
+			"img/user_10.png",
+			"img/user_6.png",
+			"img/user_8.png",
+			"css/mui.min.css",
+			"css/user.css",
+			"css/style.css",
+			"img/user_9.png",
+			"img/user_2.png",
+			"img/user_4.png"
+		],
+		"refer": [
+			"html/user/upload_head.html",
+			"html/user/data_authentication.html",
+			"html/wallet/wallet.html",
+			"html/user/my_trade.html",
+			"html/user/withdraw_cash.html",
+			"html/login/login.html",
+			"html/user/my_bankCard.html",
+			"html/user/my_rate.html",
+			"html/user/my_member.html",
+			"html/index/my_voucher.html",
+			"html/user/my_goldCoin.html",
+			"html/user/agent_apply.html",
+			"html/user/my_shareProfit.html",
+			"html/user/help_center.html",
+			"html/user/setting.html",
+			"html/user/invite_friend.html",
+			"html/user/share_code.html",
+			"html/user/activation.html",
+			"html/user/my_grade.html",
+			"html/user/my_discount.html",
+			"html/user/upgrade.html",
+			"html/user/card_schedule.html",
+			"html/user/Loan_order.html",
+			"html/index/message.html",
+			"html/user/agent_center.html",
+			"index.html",
+			"html/user/exchange.html"
+		]
+	},
+	"html/index/home.html": {
+		"refer": [
+			"html/index/binding_card.html",
+			"html/index/my_voucher.html",
+			"html/index/card_info.html",
+			"html/index/repayment.html",
+			"html/user/my_bankCard.html",
+			"html/index/kefu.html",
+			"html/index/message.html",
+			"html/user/activation.html",
+			"html/index/receivables.html",
+			"html/user/invite_friend.html",
+			"html/apply/apply_card.html",
+			"html/user/my_member.html",
+			"html/user/my_goldCoin.html",
+			"html/index/card_list.html",
+			"html/login/login.html",
+			"html/user/upgrade.html",
+			"html/index/flower_chanting.html",
+			"html/index/sk_list.html",
+			"html/apply/apply.html",
+			"html/loan/loan.html",
+			"html/index/receivables_iframe.html",
+			"html/index/banner_h_iframe.html",
+			"html/index/message_details.html",
+			"html/index/credit_iframe.html",
+			"html/user/exchange.html",
+			"html/index/classRoom.html",
+			"html/index/card_management.html"
+		],
+		"resources": [
+			"js/common.js"
+		]
+	},
+	"html/user/data_authentication.html": {
+		"refer": [
+			"html/user/identity_rz.html",
+			"html/user/photo_rz.html",
+			"html/user/bankCard_rz.html",
+			"html/user/photo_tg.html"
+		],
+		"resources": []
+	},
+	"html/user/identity_rz.html": {
+		"refer": [
+			"html/user/photo_rz.html",
+			"html/user/activation.html"
+		],
+		"resources": []
+	},
+	"html/index/card_info.html": {
+		"refer": [
+			"html/index/receivables.html",
+			"html/index/edit_card.html",
+			"html/index/bank_dot.html",
+			"html/index/repayment.html",
+			"html/index/repayment_list.html"
+		],
+		"resources": []
+	},
+	"html/index/receivables.html": {
+		"refer": [
+			"html/index/binding_card.html",
+			"html/user/my_trade.html",
+			"html/user/help_center.html",
+			"html/index/receivables_record.html",
+			"html/index/receivables_iframe.html",
+			"html/index/receivables_pay.html"
+		],
+		"resources": [
+			"img/no_creditbill_icon.png"
+		]
+	},
+	"html/index/repayment.html": {
+		"refer": [
+			"html/index/payment_history.html",
+			"html/index/repayment_list.html",
+			"html/index/preview_list.html",
+			"html/index/receivables_iframe.html",
+			"html/index/plan_details.html"
+		],
+		"resources": []
+	},
+	"html/user/withdraw_cash.html": {
+		"refer": [
+			"html/user/tx_detailed.html",
+			"html/index/binding_card.html",
+			"html/index/kefu.html"
+		],
+		"resources": []
+	},
+	"html/login/login.html": {
+		"refer": [
+			"html/login/reg.html",
+			"html/login/forget_pw.html",
+			"html/index/home.html",
+			"index.html"
+		],
+		"resources": [
+			"img/auth_code_icon.png"
+		]
+	},
+	"html/login/reg.html": {
+		"refer": [
+			"html/login/reg_protocol.html"
+		],
+		"resources": []
+	},
+	"html/user/my_bankCard.html": {
+		"refer": [
+			"html/user/add_bankCard.html",
+			"html/login/login.html",
+			"html/index/binding_card.html",
+			"html/index/card_info.html"
+		],
+		"resources": []
+	},
+	"html/user/my_goldCoin.html": {
+		"refer": [
+			"html/user/gold_detailed.html"
+		],
+		"resources": []
+	},
+	"html/user/my_shareProfit.html": {
+		"refer": [
+			"html/user/direct_invite.html",
+			"html/user/indirect_invite.html",
+			"html/user/sj_profit.html",
+			"html/user/hk_profit.html",
+			"html/user/sk_profit.html",
+			"html/user/trade_returns.html",
+			"html/user/applyCard_detailed.html",
+			"html/user/loan_detailed.html",
+			"html/user/withdraw_cash.html",
+			"html/user/xj_list.html"
+		],
+		"resources": []
+	},
+	"html/user/help_center.html": {
+		"refer": [
+			"html/user/help_list.html",
+			"html/user/help_detailed.html",
+			"html/login/login.html"
+		],
+		"resources": []
+	},
+	"html/user/setting.html": {
+		"refer": [
+			"html/user/modify_pw.html",
+			"html/login/login.html",
+			"html/user/feedback.html"
+		],
+		"resources": []
+	},
+	"html/user/modify_pw.html": {
+		"refer": [
+			"html/login/forget_pw.html",
+			"html/login/login.html"
+		],
+		"resources": []
+	},
+	"html/apply/apply_card.html": {
+		"refer": [
+			"html/login/login.html",
+			"html/apply/binding_iframe.html",
+			"html/apply/apply.html",
+			"html/apply/apply_list.html",
+			"html/apply/apply_list1.html",
+			"html/apply/bankinfo.html"
+		],
+		"resources": [
+			"img/qrcode_share.png",
+			"js/common.js",
+			"js/mui.min.js",
+			"img/login.png",
+			"js/jquery-1.8.0.min.js",
+			"html/apply/apply.html",
+			"html/apply/apply_list.html",
+			"html/apply/apply_list1.html"
+		]
+	},
+	"html/user/help_list.html": {
+		"refer": [
+			"html/user/help_detailed.html"
+		],
+		"resources": []
+	},
+	"html/index/binding_card.html": {
+		"refer": [
+			"html/index/home.html",
+			"html/login/login.html",
+			"html/user/data_authentication.html",
+			"index.html",
+			"html/user/activation.html"
+		],
+		"resources": []
+	},
+	"html/user/invite_friend.html": {
+		"refer": [
+			"html/user/link.html",
+			"html/user/share_code.html"
+		],
+		"resources": []
+	},
+	"html/user/bankCard_rz.html": {
+		"refer": [
+			"html/user/change_bankCard.html",
+			"html/user/activation.html"
+		],
+		"resources": []
+	},
+	"html/user/upload_head.html": {
+		"refer": [
+			"html/login/login.html",
+			"html/user/activation.html"
+		],
+		"resources": []
+	},
+	"html/login/forget_pw.html": {
+		"refer": [
+			"html/login/login.html"
+		],
+		"resources": []
+	},
+	"html/user/link.html": {
+		"refer": [
+			"html/login/login.html",
+			"html/user/data_authentication.html",
+			"html/user/activation.html"
+		],
+		"resources": []
+	},
+	"html/index/message.html": {
+		"refer": [
+			"html/login/login.html",
+			"html/index/message_details.html"
+		],
+		"resources": []
+	},
+	"html/user/my_member.html": {
+		"refer": [
+			"html/user/member_iframe.html",
+			"html/user/activation.html"
+		],
+		"resources": []
+	},
+	"html/user/share_code.html": {
+		"refer": [
+			"html/user/data_authentication.html",
+			"html/user/activation.html",
+			"html/user/invite_friend.html"
+		],
+		"resources": []
+	},
+	"html/wallet/wallet.html": {
+		"refer": [
+			"html/index/binding_card.html",
+			"html/index/receivables.html",
+			"html/user/invite_friend.html",
+			"html/user/help_center.html",
+			"html/user/activation.html"
+		],
+		"resources": []
+	},
+	"html/index/preview_list.html": {
+		"refer": [
+			"html/index/repayment_list.html",
+			"index.html",
+			"html/index/home.html",
+			"html/index/receivables_iframe.html",
+			"html/index/receivables_pay.html"
+		],
+		"resources": []
+	},
+	"html/index/repayment_list.html": {
+		"refer": [
+			"index.html",
+			"html/user/my_member.html",
+			"html/index/home.html"
+		],
+		"resources": []
+	},
+	"html/user/change_bankCard.html": {
+		"refer": [
+			"html/user/activation.html"
+		],
+		"resources": []
+	},
+	"html/user/feedback.html": {
+		"refer": [
+			"html/user/activation.html"
+		],
+		"resources": []
+	},
+	"html/user/photo_tg.html": {
+		"refer": [
+			"html/user/activation.html"
+		],
+		"resources": []
+	},
+	"html/index/payment_history.html": {
+		"refer": [
+			"html/index/repayment_list.html"
+		],
+		"resources": []
+	},
+	"html/find/shop_mall.html": {
+		"refer": [
+			"html/find/mall_list.html",
+			"html/find/product_details.html",
+			"html/find/mall_search.html"
+		],
+		"resources": []
+	},
+	"html/find/mall_list.html": {
+		"refer": [
+			"html/find/product_details.html"
+		],
+		"resources": []
+	},
+	"html/find/product_details.html": {
+		"refer": [
+			"html/find/shop_order.html"
+		],
+		"resources": []
+	},
+	"html/index/card_list.html": {
+		"refer": [
+			"html/index/binding_card.html",
+			"html/index/repayment.html",
+			"html/index/receivables.html",
+			"html/index/card_info.html"
+		]
+	},
+	"html/user/upgrade.html": {
+		"refer": [
+			"html/user/member_benefit.html",
+			"html/user/agent_benefit.html",
+			"html/user/my_m.html",
+			"html/user/my_member.html",
+			"html/user/agent_apply.html"
+		]
+	},
+	"html/user/my_m.html": {
+		"refer": [
+			"html/user/member_iframe.html"
+		]
+	},
+	"html/user/member_benefit.html": {
+		"refer": [
+			"html/user/my_member.html"
+		]
+	},
+	"html/index/sk_list.html": {
+		"refer": [
+			"html/index/card_info.html",
+			"html/index/receivables_record.html",
+			"html/index/receivables.html",
+			"html/index/binding_card.html"
+		],
+		"resources": [
+			"js/common.js",
+			"js/mui.min.js",
+			"js/jquery-1.8.0.min.js"
+		]
+	},
+	"html/apply/apply.html": {
+		"refer": [
+			"html/apply/apply_card.html"
+		]
+	},
+	"html/apply/bankinfo.html": {
+		"refer": [
+			"html/apply/binding_iframe.html",
+			"html/apply/binding.html"
+		]
+	},
+	"html/apply/binding.html": {
+		"refer": [
+			"html/apply/binding_iframe.html"
+		]
+	},
+	"html/loan/loan.html": {
+		"refer": [
+			"html/loan/loan_details.html"
+		]
+	},
+	"html/loan/loan_details.html": {
+		"refer": [
+			"html/loan/loan_iframe.html"
+		]
+	},
+	"html/user/card_schedule.html": {
+		"refer": [
+			"html/user/schedule_iframe.html"
+		]
+	},
+	"html/user/agent_apply.html": {
+		"refer": [
+			"html/user/withdraw_cash.html",
+			"html/index/kefu.html"
+		]
+	},
+	"html/index/receivables_record.html": {
+		"resources": [
+			"js/common.js",
+			"js/mui.min.js",
+			"img/login.png",
+			"js/jquery-1.8.0.min.js"
+		]
+	},
+	"html/user/exchange.html": {
+		"refer": [
+			"html/user/exchange_center.html"
+		]
+	},
+	"html/user/exchange_center.html": {
+		"refer": [
+			"html/user/exchange_details.html"
+		]
+	},
+	"html/index/classRoom.html": {
+		"refer": [
+			"html/index/room_details.html",
+			"html/index/room_list.html"
+		]
+	},
+	"html/index/room_list.html": {
+		"refer": [
+			"html/index/room_details.html"
+		]
+	},
+	"html/find/shop_order.html": {
+		"refer": [
+			"html/find/add_address.html",
+			"html/find/address.html"
+		]
+	},
+	"html/index/room_details.html": {
+		"refer": [
+			"html/index/room_list.html"
+		]
+	},
+	"html/find/address.html": {
+		"refer": [
+			"html/find/add_address.html",
+			"html/find/shop_order.html",
+			"html/find/edit_address.html"
+		]
+	},
+	"html/find/add_address.html": {
+		"refer": [
+			"html/find/shop_order.html"
+		]
+	},
+	"html/index/receivables_pay.html": {
+		"refer": [
+			"html/index/repayment_list.html"
+		]
+	},
+	"html/index/card_management.html": {
+		"refer": [
+			"html/index/binding_card.html",
+			"html/index/repayment.html",
+			"html/index/payment_history.html"
+		]
+	}
+}

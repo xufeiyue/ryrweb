@@ -1,0 +1,218 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/channel_status.css" />
+		<link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_812297_pq5c4cjadsn.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">智能代还</h1>
+		</header>
+		<div class="mui-content">
+			<img src="../../img/zhineng_bg3.png" width="100%" />
+			<div class="repay_methods">
+				<!-- <div class="repay_methods1" >
+					<img src="../../img/channel_status1.png"/>
+					<span class="repay_methods_span1">通道1</span>
+					<button>
+						<span class="repay_methods_span2">去开通</span>
+					</button>
+				</div> -->
+				
+				
+			</div>
+		</div>
+		<div id="form_tt"></div>
+		<input type="hidden" name="notify_res" id="notify_res" value="0" >
+		<script src="../../js/jquery-1.8.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.plusReady(function() {
+				mui.init({
+					hardwareAccelerated: true,
+					beforeback: function() {
+						//获得父页面的webview
+						var list = plus.webview.currentWebview().opener();
+						//触发父页面的自定义事件(refresh),从而进行刷新
+						mui.fire(list, 'index');
+						//返回true,继续页面关闭逻辑
+						return true;
+					}
+				})
+				
+				//mui.prompt('请输入验证码','请输入验证码',' ',['取消','确认'],function (e) {
+					
+					
+				
+					var tokens = localStorage.getItem("token");
+					var self = plus.webview.currentWebview();
+					var td_list;//获得参数
+					var cid = self.cid;
+					
+					$.ajax({
+						type: "post",
+						url: site_app + "/api/Xrepayment/check_user_payment_authorize_sk_test",
+						data: {
+							token: tokens,
+							cid:cid
+						},
+						dataType: "json",
+						success: function(e) {
+							if(e.is_open == 2){
+								mui.openWindow({
+									url: "receivables_new.html",
+									id: "receivables_new",
+									show: {
+										autoShow: true //页面loaded事件发生后自动显示，默认为true
+									},
+									extras: {
+										token:tokens,
+										title:cid
+									},
+									waiting: {
+										autoShow: false //自动显示等待框，默认为true
+										//title: '', //等待对话框上显示的提示内容
+									}
+								})
+							}else{
+								td_list = e.res
+								for(var i=0;i<td_list.length;i++){
+									if(td_list[i].is_open == 1){
+										var is_open = '已开通';
+										var b_class = '<button class="put_ash">';
+									}else if(td_list[i].is_open == 2){
+										var is_open = '申请中';
+										var b_class = '<button class="put_ash">';
+									}else if(td_list[i].is_open == 0){
+										var is_open = '开通';
+										var b_class = '<button>';
+									}else{
+										var is_open = '开通失败，请重试';
+										var b_class = '<button>';
+									}
+									var str = '<div class="repay_methods1" td_id="'+td_list[i].payment_id+'" td_d="'+td_list[i].payment_controller+'" is_verification="'+td_list[i].payment_is_verification+'""><img src="../../img/channel_status1.png"/><span class="repay_methods_span1">'+td_list[i].payment_name+'</span>'+b_class+'<span class="repay_methods_span2">'+is_open+'</span></button></div>';
+									$(".repay_methods").append(str);
+								}
+							}
+							 
+						},
+					})
+					
+					//console.log(td_list)
+					
+					// 开通通道
+					$(".repay_methods").on("click",".repay_methods1",function(){
+						plus.nativeUI.showWaiting();
+						var payment_is_verification = $(this).attr('is_verification')
+						// console.log(payment_is_verification);return false;
+						var pid = $(this).attr('td_id');
+						var td_d = $(this).attr('td_d');
+						
+						console.log(payment_is_verification);
+						console.log(pid);
+						console.log(td_d);
+						$.ajax({
+							type: "post",
+							url: site_app + "/api/Xrepayment/go_reg_passageway",
+							  // url: site_app + "/pay/Payhktfbtxzf/pay",
+							data: {
+								token: tokens,
+								cid:cid,
+								pid:pid,
+								td_d:td_d
+							},
+							dataType: "json",
+							success: function(e) {
+								plus.nativeUI.closeWaiting();
+								if(e.error_code == 0){
+									if(payment_is_verification == 1){
+										
+										mui.prompt('请输入验证码','请输入验证码',' ',['取消','确认'],function (qr_e) {
+											if(qr_e.index == 1){
+												if(qr_e.value !=''){
+													plus.nativeUI.showWaiting();
+													$.ajax({
+														type: "post",
+														url: site_app + "/api/Xrepayment/fastpay_binding_bank_card_advance",
+														  // url: site_app + "/pay/Payhktfbtxzf/pay",
+														data: {
+															token: tokens,
+															cid:cid,
+															pid:pid,
+															//td_d:td_d,
+															ticket:e.res,
+															valid_code:qr_e.value
+														},
+														dataType: "json",
+														success: function(a) {
+															plus.nativeUI.closeWaiting();
+															if(a.error_code == 0){
+																mui.alert(a.msg, '提示', '', function(){
+																	window.location.reload()
+																}, 'div');
+															}else{
+																mui.alert(a.msg, '提示', '', '', 'div');
+																return false;
+															}
+															
+															
+														}})
+												}else{
+													mui.alert('请输入验证码', '提示', '', '', 'div');
+													return false;
+												}
+											}
+										},'div')
+										
+									}else{
+										mui.alert(e.msg, '提示', '', function(){
+											window.location.reload()
+										}, 'div');
+										
+									}
+								}else{
+									mui.alert(e.msg, '提示', '', '', 'div');
+									return false;
+								}
+								// mui.openWindow({
+								// 	url: "tt.html",
+								// 	id: "tt",
+								// 	show: {
+								// 		autoShow: true //页面loaded事件发生后自动显示，默认为true
+								// 	},
+								// 	extras: {
+								// 	
+								// 		res:e.data
+								// 	},
+								// 	waiting: {
+								// 		autoShow: false //自动显示等待框，默认为true
+								// 		//title: '', //等待对话框上显示的提示内容
+								// 	}
+								// })
+								//console.log(e)
+							},
+							complete:function(XMLHttpRequest, textStatus){
+								//alert('绑卡成功')
+							}
+						})
+						
+						
+					})
+						
+						
+					
+				})
+				
+				
+		</script>
+	</body>
+
+</html>

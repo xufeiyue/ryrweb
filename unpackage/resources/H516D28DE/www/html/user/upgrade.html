@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/styles.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/upgrade.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">升级加盟</h1>
+		</header>
+		<div class="mui-content">
+			<div class="title">
+				<img src="../../img/up_5.png" />
+				<p>会员升级</p>
+			</div>
+			<div class="up_list">
+				<ul>
+					<li>
+						<div class="left member">
+							<img src="../../img/up_1.png" />
+							<div class="up_js">
+								<span>创客</span>
+								<p>创客收益，开启财富之门</p>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="right">
+							<span class="upgrade btn">升级</span>
+						</div>
+						<div class="clear"></div>
+					</li>
+					<li>
+						<div class="left agent">
+							<img src="../../img/up_3.png" />
+							<div class="up_js">
+								<span>代理商</span>
+								<p>独家区域代理，狂赚不停</p>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="right">
+							<span class="apply btn">申请</span>
+						</div>
+						<div class="clear"></div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/jquery-1.8.0.min.js"></script>
+		<script src="../../js/common.js"></script>
+		<script type="text/javascript">
+			mui.plusReady(function() {
+				mui.init({
+					hardwareAccelerated: true,
+				});
+				window.addEventListener('user', function(e) { //执行刷新
+					location.reload();
+				});
+				//plus.nativeUI.showWaiting("加载中");
+				var tokens = getToken();
+				$(".upgrade").click(function() {
+					if(!tokens) {
+						mui.openWindow({
+							url: "../login/login.html",
+							id: "login",
+							show: {
+								autoShow: true //页面loaded事件发生后自动显示，默认为true
+							},
+							waiting: {
+								autoShow: false //自动显示等待框，默认为true
+								//title: '', //等待对话框上显示的提示内容
+							}
+						})
+					} else {
+						mui.openWindow({
+							url: "../user/my_member.html",
+							id: "my_member",
+							show: {
+								autoShow: true //页面loaded事件发生后自动显示，默认为true
+							},
+							waiting: {
+								autoShow: false //自动显示等待框，默认为true
+								//title: '', //等待对话框上显示的提示内容
+							}
+						})
+					}
+				})
+
+//				$(".member").click(function() {
+//					mui.openWindow({
+//						url: "member_benefit.html",
+//						id: "member_benefit",
+//						show: {
+//							autoShow: true //页面loaded事件发生后自动显示，默认为true
+//						},
+//						waiting: {
+//							autoShow: false //自动显示等待框，默认为true
+//							//title: '', //等待对话框上显示的提示内容
+//						}
+//					})
+//				})
+//				$(".agent").click(function() {
+//					mui.openWindow({
+//						url: "agent_benefit.html",
+//						id: "agent_benefit",
+//						show: {
+//							autoShow: true //页面loaded事件发生后自动显示，默认为true
+//						},
+//						waiting: {
+//							autoShow: false //自动显示等待框，默认为true
+//							//title: '', //等待对话框上显示的提示内容
+//						}
+//					})
+//				})
+				$(".apply").click(function() {
+					mui.openWindow({
+						url: "agent_apply.html",
+						id: "agent_apply",
+						show: {
+							autoShow: true //页面loaded事件发生后自动显示，默认为true
+						},
+						waiting: {
+							autoShow: false //自动显示等待框，默认为true
+							//title: '', //等待对话框上显示的提示内容
+						}
+					})
+				})
+				
+				plus.nativeUI.closeWaiting();
+				 
+			});
+		</script>
+	</body>
+
+</html>

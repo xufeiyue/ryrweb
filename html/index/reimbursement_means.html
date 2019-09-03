@@ -1,0 +1,234 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/reimbursement_means.css" />
+		<link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_812297_pq5c4cjadsn.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">智能代还</h1>
+		</header>
+		<div class="mui-content">
+			<img src="../../img/zhineng_bg4.png" width="100%" />
+			<div class="repay_methods">
+				<div class="repay_methods1" style="margin-top: 8px;" id="repay_methods1">
+					<img src="../../img/huan_2.png"/>
+					<span class="repay_methods_span1">智能还</span>
+					<button>
+						<span class="repay_methods_span2">去还款</span>
+						<img class="to_repay" src="../../img/shoushi1.png"/>
+					</button>
+					<p>最低预留2%-5%,即可还全额账单</p>
+				</div>
+				<div class="repay_methods1" id="repay_methods2">
+					<img src="../../img/huan_3.png"/>
+					<span class="repay_methods_span1">养卡还</span>
+					<button>
+						<span class="repay_methods_span2">去还款</span>
+						<img class="to_repay" src="../../img/shoushi1.png"/>
+					</button>
+					<p>多通道,多次数,多商户,多金额,还款更养卡</p>
+				</div>
+				<div class="repay_methods1" id="repay_methods3">
+					<img src="../../img/huan_5.png"/>
+					<span class="repay_methods_span1">多卡还</span>
+					<button>
+						<span class="repay_methods_span2">去还款</span>
+						<img class="to_repay" src="../../img/shoushi1.png"/>
+					</button>
+					<p>用单卡最少资金同时还多张卡账单</p>
+				</div>
+				<div class="repay_methods1" id="repay_methods4">
+					<img src="../../img/juanbao0001.png"/>
+					<span class="repay_methods_span1">旧版智能还</span>
+					<button>
+						<span class="repay_methods_span2">去还款</span>
+						<img class="to_repay" src="../../img/shoushi1.png"/>
+					</button>
+					<p>手动区分大小额和还款笔数</p>
+				</div>
+			</div>
+		</div>
+		<script src="../../js/jquery-1.8.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.plusReady(function() {
+				mui.init({
+					hardwareAccelerated: true,
+					beforeback: function() {
+						//获得父页面的webview
+						var list = plus.webview.currentWebview().opener();
+						//触发父页面的自定义事件(refresh),从而进行刷新
+						mui.fire(list, 'index');
+						//返回true,继续页面关闭逻辑
+						return true;
+					}
+				});
+				
+				//智能还款
+				$(".repay_methods").on("click", "#repay_methods1", function() {
+					
+					var tokens = localStorage.getItem("token");
+					
+					$.ajax({
+						url:site_app + "/api/Xrepayment/check_passway_status",
+						type:"post",
+						data:{
+							token: tokens,
+							ctype:1
+						},
+						dataType:"json",
+						success:function(e){
+							if(e.error_code == 0){
+								var titles = $(this).attr("title");
+								mui.openWindow({
+									url: "card_management.html",
+									id: "card_management",
+									show: {
+										autoShow: true //页面loaded事件发生后自动显示，默认为true
+									},
+									extras: {
+										title: titles,
+									},
+									waiting: {
+										autoShow: false //自动显示等待框，默认为true
+										//title: '', //等待对话框上显示的提示内容
+									}
+								})
+							}else{
+								mui.alert(e.msg,'提示', '', '', 'div')
+							}
+						}
+					})
+				})
+				
+				// 养卡还
+				$(".repay_methods").on("click", "#repay_methods2", function() {
+					var tokens = localStorage.getItem("token");
+					
+					$.ajax({
+						url:site_app + "/api/Xrepayment/check_passway_status",
+						type:"post",
+						data:{
+							token: tokens,
+							ctype:2
+						},
+						dataType:"json",
+						success:function(e){
+							if(e.error_code == 0){
+								var titles = $(this).attr("title");
+								mui.openWindow({
+									url: "card_management_more.html",
+									id: "card_management_more",
+									show: {
+										autoShow: true //页面loaded事件发生后自动显示，默认为true
+									},
+									extras: {
+										title: titles,
+									},
+									waiting: {
+										autoShow: false //自动显示等待框，默认为true
+										//title: '', //等待对话框上显示的提示内容
+									}
+								})
+							}else{
+								mui.alert(e.msg,'提示', '', '', 'div')
+							}
+						}
+					})
+					
+				})
+				
+				// 多卡还
+				$(".repay_methods").on("click", "#repay_methods3", function() {
+					mui.alert('建设中','提示', '', '', 'div')
+				// 	var tokens = localStorage.getItem("token");
+				// 	
+				// 	$.ajax({
+				// 		url:site_app + "/api/Xrepayment/check_passway_status",
+				// 		type:"post",
+				// 		data:{
+				// 			token: tokens
+				// 		},
+				// 		dataType:"json",
+				// 		success:function(e){
+				// 			if(e.error_code == 0){
+				// 				var titles = $(this).attr("title");
+				// 				mui.openWindow({
+				// 					url: "card_management.html",
+				// 					id: "card_management",
+				// 					show: {
+				// 						autoShow: true //页面loaded事件发生后自动显示，默认为true
+				// 					},
+				// 					extras: {
+				// 						title: titles,
+				// 					},
+				// 					waiting: {
+				// 						autoShow: false //自动显示等待框，默认为true
+				// 						//title: '', //等待对话框上显示的提示内容
+				// 					}
+				// 				})
+				// 			}else{
+				// 				mui.alert(e.msg,'提示', '', '', 'div')
+				// 			}
+				// 		}
+				// 	})
+				// 	
+				})
+				
+				// 旧版智能还
+				$(".repay_methods").on("click", "#repay_methods4", function() {
+					
+					var tokens = localStorage.getItem("token");
+					var titles = $(this).attr("title");
+					
+					$.ajax({
+						url:site_app + "/api/Xrepayment/check_passway_status",
+						type:"post",
+						data:{
+							token: tokens,
+							ctype:4
+						},
+						dataType:"json",
+						success:function(e){
+							if(e.error_code == 0){
+								mui.openWindow({
+									url: "card_list.html",
+									id: "card_list",
+									show: {
+										autoShow: true //页面loaded事件发生后自动显示，默认为true
+									},
+									extras: {
+										title: titles,
+									},
+									waiting: {
+										autoShow: false //自动显示等待框，默认为true
+										//title: '', //等待对话框上显示的提示内容
+									}
+								})
+							}else{
+								mui.alert(e.msg,'提示', '', '', 'div')
+							}
+						},
+					})
+					
+					
+					
+					
+				})
+				})
+				
+				
+		
+		</script>
+	</body>
+
+</html>

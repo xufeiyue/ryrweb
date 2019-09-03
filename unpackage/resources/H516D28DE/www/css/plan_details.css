@@ -1,0 +1,96 @@
+header {
+		width: 100%;
+		height: 70px !important;
+		background: url(../img/login.png) no-repeat;
+		background-size: cover;
+		box-shadow: none !important;
+		padding-top: 28px;
+	}
+	
+	.mui-content {
+		padding-top: 100px !important;
+	}
+	
+	header a {
+		color: #fff;
+	}
+	
+	.mui-title {
+		color: #fff!important;
+	}
+	
+	.no_info {
+		width: 50%;
+		margin: 30px auto;
+		text-align: center;
+	}
+	
+	.no_info img {
+		width: 100%;
+	}
+ul li{
+	list-style: none;
+}
+.plan_list{
+	width: 90%;
+	margin: 0 auto;
+	border-radius: 10px;
+	background-color: white;
+	padding-bottom:7px;
+	margin-top:20px;
+}
+.plan_list:nth-child(1){
+	margin-top: 0;
+}
+.plan_list_title{
+	width: 100%;
+	height: 40px;
+	background-color:#46A4F9;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+.plan_list_title span{
+	font-size: 16px;
+	color: white;
+	display: inline-block;
+	line-height: 40px;
+}
+.plan_list_title1{
+	width: 84%;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.plan_list_title1 span:nth-child(1){
+	float: left;
+}
+.plan_list_title1 span:nth-child(2){
+	float:right;
+}
+.plan_list_title1 img{
+	width:26px;
+	height:26px;
+	float: left;
+	margin-top:8px;
+}
+.money_span{
+	margin-left: 10px;
+}
+.list_details1{
+	width:80%;
+	color: #4F4F4F;
+	margin: 0 auto;
+	font-size: 14px;
+}
+.list_details1 p:nth-child(1){
+	margin-top: 10px;
+}
+.list_details1 p{ 
+	overflow: hidden;
+}
+.list_details1 p span:nth-child(1){
+	float: left;
+}
+.list_details1 p span:nth-child(2){
+	float:right;
+}
+

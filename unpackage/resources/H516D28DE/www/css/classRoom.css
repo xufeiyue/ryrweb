@@ -1,0 +1,193 @@
+header {
+	width: 100%;
+	height: 70px !important;
+	background: url(../img/login.png) no-repeat;
+	background-size: cover;
+	box-shadow: none !important;
+	padding-top: 28px;
+}
+
+.mui-content {
+	padding-top: 70px !important;
+}
+
+header a {
+	color: #fff;
+}
+
+.mui-title {
+	color: #fff!important;
+}
+
+.tab {
+	padding: 10px 15px;
+	border-bottom: 5px solid #E8E8E8;
+}
+
+.tab_list li {
+	width: calc(100% / 4);
+	text-align: center;
+	float: left;
+}
+
+.tab_list li img {
+	width: 40%;
+}
+
+.tab_list li p {
+	font-size: 14px;
+	margin: 0;
+}
+
+.k_type .k_title {
+	height: 50px;
+	line-height: 50px;
+	padding: 0 20px;
+	font-size: 14px;
+	color: #8F8F94;
+}
+
+.k_type .k_title .left {
+	font-size: 18px;
+	color: #000;
+	font-weight: 600;
+}
+
+.type_list {
+	padding: 0 20px;
+}
+
+.type_list li {
+	width: calc((100% - 20px) / 2);
+	text-align: center;
+	margin-bottom: 20px;
+	float: left;
+}
+
+.type_list li:nth-child(odd) {
+	margin-right: 20px;
+}
+
+.type_list li img {
+	width: 100%;
+}
+
+
+/*推荐课堂*/
+
+.romm_list {
+	padding: 0 15px;
+}
+
+.romm_list li {
+	padding: 15px 0;
+	border-bottom: 1px solid #eee;
+}
+
+.romm_list li .left {
+	width: 65%;
+	padding-right: 5px;
+}
+
+.romm_list li .left .course_name {
+	font-size: 16px;
+	font-weight: 600;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+}
+
+.tips {
+	font-size: 14px;
+	color: #8F8F94;
+	margin-top: 15px;
+}
+
+.romm_list li .right {
+	width: 35%;
+}
+
+.romm_list li .right img {
+	width: 100%;
+}
+
+.details {
+	padding: 10px 15px;
+	background: #fff;
+	margin-bottom: 10px;
+}
+
+.details .d_title {
+	font-size: 16px;
+	font-weight: 600;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+}
+
+.details .content {
+	font-size: 14px;
+	color: #444;
+	margin-top: 10px;
+}
+
+.switch {
+	background: #fff;
+	padding: 15px;
+	margin-bottom: 10px;
+}
+
+.switch ul li {
+	width: 50%;
+	float: left;
+	text-align: left;
+	font-size: 14px;
+	color: #8F8F94;
+}
+.switch ul li img{
+	width: 8%;
+	vertical-align: middle;
+	margin-bottom: 4px;
+}
+.switch ul li:nth-child(2){
+	float: right;
+	text-align: right;
+}
+.switch ul li .name {
+	font-size: 15px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding-right: 10px;
+	color: #000;
+}
+
+.operation{
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 55px;
+	background: #fff;
+	padding-top: 6px;
+	border-top: 1px solid #ccc;
+}
+.operation ul li{
+	width: calc(100% / 3);
+	text-align: center;
+	float: left;
+}
+.operation ul li img{
+	width: 16%;
+}
+
+.operation ul li .num{
+	font-size: 14px;
+}
+.operation ul li .num span{
+	color: #8F8F94;
+}

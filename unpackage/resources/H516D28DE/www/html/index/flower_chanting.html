@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/mui.picker.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/style.css" />
+		<style type="text/css">
+			html,
+			body,
+			.mui-content {
+				height: 100%;
+				background: #fff;
+			}
+			
+			header {
+				width: 100%;
+				height: 70px !important;
+				background: url(../../img/login.png) no-repeat;
+				background-size: cover;
+				box-shadow: none !important;
+				padding-top: 28px;
+			}
+			
+			.mui-content {
+				padding: 70px 40px 0 !important;
+			}
+			
+			header a {
+				color: #fff;
+			}
+			
+			.mui-title {
+				color: #fff!important;
+			}
+			
+			.mui-slider-item p {
+				text-align: center;
+				font-size: 25px;
+				color: #000;
+				margin-top: 40px;
+				margin-bottom: 20px;
+			}
+			
+			.tips {
+				margin-top: 20px;
+				text-align: center;
+			}
+			
+			.tips p:first-child {
+				font-size: 16px;
+			}
+			
+			.tips p:last-child {
+				font-size: 12px;
+			}
+			
+			.warning {
+				font-size: 12px;
+				color: red;
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">花呗回款</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-slider">
+				<div class="mui-slider-group">
+					<!--第一个内容区容器-->
+					<div class="mui-slider-item">
+						<p>601-99999元</p>
+						<img src="../../img/mingyuan.png" class="img"/>
+					</div>
+					<!--第二个内容区-->
+					<div class="mui-slider-item">
+						<p>10-600元</p>
+						<img src="../../img/meilitongnian.png"  class="img"/>
+					</div>
+					<div class="mui-slider-item">
+						<p>10-399元</p>
+						<img src="../../img/chongshijie.png"  class="img"/>
+					</div>
+					<div class="mui-slider-item">
+						<p>10-299元</p>
+						<img src="../../img/lehaha.png"  class="img"/>
+					</div>
+				</div>
+			</div>
+			<div class="tips">
+				<p>手机截图保存到相册</p>
+				<p>滑动切换更多内容</p>
+			</div>
+			<div class="warning">
+				*温馨提示：为了您的账户安全，请务必关闭wifi和定位！！！
+			</div>
+		</div>
+		<script src="../../js/jquery-1.8.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.plusReady(function() {
+				mui.init({
+					hardwareAccelerated: true,
+				});
+				 
+			});
+		</script>
+	</body>
+
+</html>

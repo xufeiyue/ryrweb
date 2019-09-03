@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/style.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/card_schedule.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">办卡进度</h1>
+		</header>
+		<div class="mui-content">
+			<div class="head">
+				<h1>进度查询</h1>
+				<span>建议申请资料提交7-15个工作日后查询</span>
+			</div>
+			<div class="card">
+				<ul class="card_list">
+
+				</ul>
+				<div class="clear"></div>
+			</div>
+
+		</div>
+		<script src="../../js/jquery-1.8.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.plusReady(function() {
+				mui.init({
+					hardwareAccelerated: true,
+				});
+				window.addEventListener('index', function(e) { //执行刷新
+					location.reload();
+				});
+				$.ajax({
+					type: "get",
+					url: site_app + "/api/Common/query",
+					data: "",
+					success: function(e) {
+						console.log(e);
+						if(e.error == 0) {
+							for(var i = 0; i < e.data.length; i++) {
+								var html = '<li title="' + e.data[i].list_queryurl + '">' +
+									'<img src="' + e.data[i].list_logo + '"/>' +
+									'<p>' + e.data[i].list_name + '</p>' +
+									'</li>';
+								$(".card_list").append(html);
+							}
+						}
+					}
+				});
+				$(".card_list").on("click", "li", function() {
+					var urls = $(this).attr("title");
+					mui.openWindow({
+						url: "../user/schedule_iframe.html",
+						id: "schedule_iframe",
+						styles: {},
+						extras: {
+							urls: urls
+						},
+						show: {
+							autoShow: true //页面loaded事件发生后自动显示，默认为true
+						},
+						waiting: {
+							autoShow: false //自动显示等待框，默认为true
+							//title: '', //等待对话框上显示的提示内容
+						}
+					})
+				})
+				 
+			})
+		</script>
+	</body>
+
+</html>
