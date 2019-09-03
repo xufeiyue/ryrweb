@@ -168,7 +168,7 @@ white-space: nowrap;
 	font-weight: bold;
 }
 .site .right{
-	float: right;
+	float: left;
 }
 #site{
 	height: 30px;
@@ -183,31 +183,45 @@ white-space: nowrap;
 .passageway_ul li{
 	/*list-style: disc;*/
 	margin-top: 5px;
-	font-size: 16px;
+	font-size: 14px;
 }
 .passageway_ul span{
 	margin-right: 10px;
 }
 .hk_info {
-	padding:8px;
+	padding: 28px 0;
 	background: #fff;
+}
+
+
+.hk_info ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	width: 90%;
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+.hk_info ul li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
 
 .hk_info ul li {
 	width: calc(100% / 4);
 	text-align: center;
 	float: left;
-	font-size: 13px;
+	font-size: 12px;
 }
-
 .hk_info ul li p {
 	font-size: 13px;
 	margin-bottom: 4px;
 }
 
 .hk_info ul li span {
-	font-size: 14px;
-	color: #8f8f94;
+	font-size: 16px;
 }
 .industry {
 	/* width:98%;
